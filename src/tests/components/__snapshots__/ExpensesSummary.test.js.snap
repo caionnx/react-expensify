@@ -4,7 +4,9 @@ exports[`Should render Expenses Summary correctly with 0 expenses 1`] = `
 <p>
   Viewing 
   0
-   expenses totalling 
+   
+  expenses
+   totalling 
   $0.00
 </p>
 `;
@@ -13,7 +15,9 @@ exports[`Should render Expenses Summary correctly with multiple expenses 1`] = `
 <p>
   Viewing 
   3
-   expenses totalling 
+   
+  expenses
+   totalling 
   $1,141.95
 </p>
 `;
