@@ -1,12 +1,12 @@
 import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppRouter, { history } from './routers/AppRouter';
-import { firebase } from './firebase/firebase';
-import { startSetExpenses } from './actions/expenses';
-import { login, logout } from './actions/auth';
-import configureStore from './store/configureStore';
-import LoadingPage from './components/LoadingPage';
+import AppRouter, { history } from './js/routers/AppRouter';
+import { firebase } from './js/firebase/firebase';
+import { startSetExpenses } from './js/actions/expenses';
+import { login, logout } from './js/actions/auth';
+import configureStore from './js/store/configureStore';
+import LoadingPage from './js/components/LoadingPage';
 import './app-styles';
 
 const appNode = document.getElementById('app');
