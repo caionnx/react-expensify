@@ -10,12 +10,12 @@ export class EditExpensePage extends React.Component {
   };
   onSubmit = (expense) => {
     this.props.startEditExpense(this.props.expense.id, expense).then(() => {
-      this.props.history.push('/');
+      this.props.history.push('/dashboard');
     });
   };
   onRemove = () => {
     this.props.startRemoveExpense({ id: this.props.expense.id }).then(() => {
-      this.props.history.push('/');
+      this.props.history.push('/dashboard');
     });
   };
   onOpenRemoveModal = () => {
@@ -23,6 +23,11 @@ export class EditExpensePage extends React.Component {
   }
   onCloseRemoveModal = () => {
     this.setState({ confirmRemoveModal: false });
+  }
+  componentWillMount() {
+    if (!this.props.expense) {
+      this.props.history.push('/dashboard');
+    }
   }
   render() {
     return (
@@ -47,6 +52,7 @@ export class EditExpensePage extends React.Component {
           <Modal 
             isOpen={this.state.confirmRemoveModal}
             onRequestClose={this.onCloseRemoveModal}
+            appElement={document.getElementById('app')}
             contentLabel="Remove Expense Modal"
             closeTimeoutMS={200}
             className="modal">

@@ -1,6 +1,7 @@
 import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'react-dates/initialize';
 import AppRouter, { history } from './js/routers/AppRouter';
 import { firebase } from './js/firebase/firebase';
 import { startSetExpenses } from './js/actions/expenses';
