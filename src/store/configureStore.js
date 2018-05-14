@@ -4,7 +4,10 @@ import expensesReducer from '../reducers/expenses';
 import filtersReducer from '../reducers/filters';
 import authReducer from '../reducers/auth';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const includeReduxDevtools = process.env.NODE_ENV === 'development'
+  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+  : undefined;
+const composeEnhancers = includeReduxDevtools || compose;
 
 export default () => {
   const store = createStore(
