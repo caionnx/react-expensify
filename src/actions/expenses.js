@@ -67,10 +67,10 @@ export const startSetExpenses = () => (dispatch, getState) => {
   return database.ref(`users/${uid}/expenses`).once('value').then((snapshot) => {
     const expenses = [];
     snapshot.forEach(element => {
-        expenses.push({
-            id: element.key,
-            ...element.val()
-        });
+      expenses.push({
+          id: element.key,
+          ...element.val()
+      });
     });
 
     dispatch(setExpenses(expenses));

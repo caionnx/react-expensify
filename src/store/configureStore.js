@@ -9,8 +9,8 @@ const includeReduxDevtools = process.env.NODE_ENV === 'development'
   : undefined;
 const composeEnhancers = includeReduxDevtools || compose;
 
-export default () => {
-  const store = createStore(
+export default () => 
+  createStore(
     combineReducers({
       expenses: expensesReducer,
       filters: filtersReducer,
@@ -18,6 +18,3 @@ export default () => {
     }),
     composeEnhancers(applyMiddleware(thunk))
   );
-
-  return store;
-};
