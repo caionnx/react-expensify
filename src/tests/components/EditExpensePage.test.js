@@ -33,8 +33,14 @@ test('should handle editExpense', () => {
   });
 });
 
+test('should open remove confimation modal', () => {
+  wrapper.find('button#openRemoveModal').simulate('click');
+  const modal = wrapper.find('Modal');
+  expect(modal.prop('isOpen')).toBeTruthy();
+});
+
 test('should handle startRemoveExpense', () => {
-  wrapper.find('button').simulate('click');
+  wrapper.find('button#removeExpense').simulate('click'); // Button inside modal
   
   expect(startRemoveExpense).toHaveBeenLastCalledWith({
     id: expenses[2].id
