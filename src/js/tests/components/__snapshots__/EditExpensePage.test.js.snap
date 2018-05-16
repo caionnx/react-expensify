@@ -38,6 +38,7 @@ exports[`should render EditExpensePage 1`] = `
       Remove Expense
     </button>
     <Modal
+      appElement={null}
       ariaHideApp={true}
       bodyOpenClassName="ReactModal__Body--open"
       className="modal"
