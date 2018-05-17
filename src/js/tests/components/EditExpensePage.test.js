@@ -25,11 +25,11 @@ test('should render EditExpensePage', () => {
 
 test('should handle editExpense', () => {
   wrapper.find('ExpenseForm').prop('onSubmit')(expenses[2]);
-  
+
   expect(startEditExpense).toHaveBeenLastCalledWith(expenses[2].id, expenses[2]);
 
   return startEditExpense().then(() => {
-    expect(history.push).toHaveBeenLastCalledWith('/');
+    expect(history.push).toHaveBeenLastCalledWith('/dashboard');
   });
 });
 
@@ -41,12 +41,12 @@ test('should open remove confimation modal', () => {
 
 test('should handle startRemoveExpense', () => {
   wrapper.find('button#removeExpense').simulate('click'); // Button inside modal
-  
+
   expect(startRemoveExpense).toHaveBeenLastCalledWith({
     id: expenses[2].id
   });
-  
+
   return startRemoveExpense().then(() => {
-    expect(history.push).toHaveBeenLastCalledWith('/');
+    expect(history.push).toHaveBeenLastCalledWith('/dashboard');
   });
 });
