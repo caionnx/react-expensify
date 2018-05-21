@@ -11,16 +11,20 @@ import PublicRoute from './PublicRoute'
 
 export const history = createHistory()
 
+export const SwitchRoutes = () => (
+  <Switch>
+    <PublicRoute path='/' component={LoginPage} exact />
+    <PrivateRoute path='/dashboard' component={ExpenseDashboardPage} />
+    <PrivateRoute path='/create' component={AddExpensePage} />
+    <PrivateRoute path='/edit/:id' component={EditExpensePage} />
+    <Route component={NotFoundPage} />
+  </Switch>
+)
+
 const AppRouter = () => (
   <Router history={history}>
     <div>
-      <Switch>
-        <PublicRoute path='/' component={LoginPage} exact />
-        <PrivateRoute path='/dashboard' component={ExpenseDashboardPage} />
-        <PrivateRoute path='/create' component={AddExpensePage} />
-        <PrivateRoute path='/edit/:id' component={EditExpensePage} />
-        <Route component={NotFoundPage} />
-      </Switch>
+      <SwitchRoutes />
     </div>
   </Router>
 )

@@ -1,6 +1,7 @@
-import { Route, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import React from 'react';
+import { Route, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 export const PublicRoute = ({
   isAuthenticated,
@@ -12,12 +13,17 @@ export const PublicRoute = ({
       return <Component {...props} />
     }
 
-    return <Redirect to="/dashboard" />
+    return <Redirect to='/dashboard' />
   }} />
-);
+)
+
+PublicRoute.propTypes = {
+  isAuthenticated: PropTypes.bool,
+  component: PropTypes.func
+}
 
 const maptStateToProps = (state) => ({
   isAuthenticated: !!state.auth.uid
-});
+})
 
-export default connect(maptStateToProps)(PublicRoute);
+export default connect(maptStateToProps)(PublicRoute)

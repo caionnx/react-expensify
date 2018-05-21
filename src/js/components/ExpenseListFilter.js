@@ -8,7 +8,7 @@ const onChangeSortBy = (dispatch, e) =>
     ? dispatch(sortByDate(e.target.value))
     : dispatch(sortByAmount(e.target.value))
 
-const ExpenseListFilter = (props) => (
+export const ExpenseListFilter = (props) => (
   <div>
     <input
       type='text'

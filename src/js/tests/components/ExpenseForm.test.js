@@ -5,8 +5,15 @@ import ExpenseForm from '../../components/ExpenseForm'
 import expenses from '../fixtures/expenses'
 
 let onSubmitProp
+let dateNowSpy
 beforeAll(() => {
+  dateNowSpy = jest.spyOn(Date, 'now').mockImplementation(() => 0)
   onSubmitProp = () => ({})
+})
+
+afterAll(() => {
+  dateNowSpy.mockReset()
+  dateNowSpy.mockRestore()
 })
 
 test('should render ExpenseForm correctly', () => {

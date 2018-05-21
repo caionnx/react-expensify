@@ -11,14 +11,17 @@ export const Header = ({ startLogout }) => (
         <Link className='header__title' to='/dashboard'>
           <h1>Expensify</h1>
         </Link>
-        <button className='button button--link' onClick={startLogout}>Logout</button>
+        {
+          startLogout &&
+          <button className='button button--link' onClick={startLogout}>Logout</button>
+        }
       </div>
     </div>
   </header>
 )
 
 Header.propTypes = {
-  startLogout: PropTypes.func.isRequired
+  startLogout: PropTypes.func
 }
 
 const mapDispatchToProps = (dispatch) => ({

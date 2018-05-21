@@ -7,7 +7,7 @@ import { startEditExpense, startRemoveExpense } from '../actions/expenses'
 
 export class EditExpensePage extends React.Component {
   state = {
-    confirmRemoveModal: false
+    removeExpenseModal: false
   }
   onSubmit = (expense) => {
     this.props.startEditExpense(this.props.expense.id, expense).then(() => {
@@ -19,14 +19,14 @@ export class EditExpensePage extends React.Component {
       this.props.history.push('/dashboard')
     })
   }
-  onOpenRemoveModal = () => {
-    this.setState({ confirmRemoveModal: true })
+  onOpenRemoveExpenseModal = () => {
+    this.setState({ removeExpenseModal: true })
   }
-  onCloseRemoveModal = () => {
-    this.setState({ confirmRemoveModal: false })
+  onCloseRemoveExpenseModal = () => {
+    this.setState({ removeExpenseModal: false })
   }
   componentWillMount () {
-    if (!this.props.expense) {
+    if (!this.props.expense || !this.props.expense.id) {
       this.props.history.push('/dashboard')
     }
   }
@@ -44,15 +44,15 @@ export class EditExpensePage extends React.Component {
             onSubmit={this.onSubmit}
           />
           <button
-            id='openRemoveModal'
+            id='openRemoveExpenseModal'
             className='button button--secondary'
-            onClick={this.onOpenRemoveModal}>
+            onClick={this.onOpenRemoveExpenseModal}>
             Remove Expense
           </button>
 
           <Modal
-            isOpen={this.state.confirmRemoveModal}
-            onRequestClose={this.onCloseRemoveModal}
+            isOpen={this.state.removeExpenseModal}
+            onRequestClose={this.onCloseRemoveExpenseModal}
             appElement={document.getElementById('app')}
             contentLabel='Remove Expense Modal'
             closeTimeoutMS={200}
@@ -60,7 +60,7 @@ export class EditExpensePage extends React.Component {
 
             <p className='modal__body'>Are you sure you want to remove this expense?</p>
             <div className='modal__options'>
-              <button className='button' onClick={this.onCloseRemoveModal}>Cancel</button>
+              <button id='closeRemoveExpenseModal' className='button' onClick={this.onCloseRemoveExpenseModal}>Cancel</button>
               <button id='removeExpense' className='button button--secondary' onClick={this.onRemove}>Remove</button>
             </div>
           </Modal>

@@ -1,4 +1,5 @@
 import React from 'react'
+import 'react-dates/initialize'
 import { shallow } from 'enzyme'
 import expenses from '../fixtures/expenses'
 import { EditExpensePage } from '../../components/EditExpensePage'
@@ -23,6 +24,19 @@ test('should render EditExpensePage', () => {
   expect(wrapper).toMatchSnapshot()
 })
 
+test('should redirect to dashboard if not has expense', () => {
+  shallow( // 'mount' from Enzyme causes error
+    <EditExpensePage
+      startEditExpense={startEditExpense}
+      startRemoveExpense={startRemoveExpense}
+      history={history}
+      expense={{}}
+    />
+  )
+
+  expect(history.push).toHaveBeenLastCalledWith('/dashboard')
+})
+
 test('should handle editExpense', () => {
   wrapper.find('ExpenseForm').prop('onSubmit')(expenses[2])
 
@@ -33,10 +47,17 @@ test('should handle editExpense', () => {
   })
 })
 
-test('should open remove confimation modal', () => {
-  wrapper.find('button#openRemoveModal').simulate('click')
+test('should open "remove confimation" modal', () => {
+  wrapper.find('button#openRemoveExpenseModal').simulate('click')
   const modal = wrapper.find('Modal')
   expect(modal.prop('isOpen')).toBeTruthy()
+})
+
+test('should close "remove confimation" modal', () => {
+  wrapper.find('button#openRemoveExpenseModal').simulate('click')
+  wrapper.find('button#closeRemoveExpenseModal').simulate('click')
+  const modal = wrapper.find('Modal')
+  expect(modal.prop('isOpen')).toBeFalsy()
 })
 
 test('should handle startRemoveExpense', () => {
