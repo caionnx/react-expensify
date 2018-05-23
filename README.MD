@@ -23,6 +23,7 @@ Jest
 ```
 yarn test
 yarn test -- --watch
+yarn run test-coverage
 ```
 ### Built With
 
