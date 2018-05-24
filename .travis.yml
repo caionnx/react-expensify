@@ -9,7 +9,6 @@ deploy:
   api_key:
     secure: SSok8grPaImD2Q2+SOoJhN38E3vVtETJbBZS7Br4L4gvbGIq1wIHvK7Y3IPA/8to6rTVzyUQg6zgH0EJsuge2wRk5ONi8ZtVIc42n5zVJMmSIoF3DyFFcrUjn3moAcpO+Q5BQYZAzVP0tbRx/kPVw3/OpSSuQB5FswftnmY1T0HZ1+IxRj4p83W7uVg/9wrwqSjGFRMKJUHx4now9N0wBIy9O539ju/VktOAdhX9YuS4kSR/PyLA8MErsUQ6uMuchqtf2XXdsEdbn2BwvOi4WZa/eltjMxj+GEiwZM6jy20QphKsVYm2mZDjz7lAXigoR+iQo+cwFktKDIBw96J9S6Ui6eCDP/5VehsFuHKU0JcC+aB9UyUZ7BACrw5p/dr1S2hpDnYB+Ik1jWNgmWjlbGbiuNcHUKOfqwOwRXkMPMqQmeYOfOH809ocVT8hvYFMoFf0hVGYVbGYrAVHZeWMSFHnFwTxdxTKZkbin0nUps14wI3Ge+1AMEIVOZ/+IOk1YprAhbAuaRpocbWPubPmtiJeP6+y3ag8w/VZ0ComGgT/Td/gZQ142fgOOPsUgpGk/er5jyUG7op/ATDf8JpCIda15DbKN1ceflinJsuvJpo3XlNHeGHskrh3nRNrhXnPWesxpDYoze9SMXbiNErWopRyd8uSzobqk6U6qF+nx1M=
   app: react-expensify-nn
-  run: "yarn run build-prod"
 
 jobs:
   include:
