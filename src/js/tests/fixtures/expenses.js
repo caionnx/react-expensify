@@ -5,7 +5,7 @@ export default [{
   description: 'Gum',
   note: '',
   amount: 195,
-  createdAt: moment.utc(0).unix()
+  createdAt: 0
 }, {
   id: '2',
   description: 'Rent',
