@@ -2,7 +2,10 @@
 [![Coverage Status](https://coveralls.io/repos/github/caionnx/react-expensify/badge.svg?branch=master)](https://coveralls.io/github/caionnx/react-expensify?branch=master)
 [![Build Status](https://travis-ci.org/caionnx/react-expensify.svg?branch=master)](https://travis-ci.org/caionnx/react-expensify)
 
-A project to learn and pratice React application. See the [live](https://react-expensify-nn.herokuapp.com) demo.
+A project to learn and develop React SPA. See the [live](https://react-expensify-nn.herokuapp.com) demo.
+
+### Todo
+- Improve webpack build.
 
 ### Scripts
 
