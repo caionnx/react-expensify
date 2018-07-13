@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { DateRangePicker } from 'react-dates'
+import ExpensesCategorySelect from './ExpensesCategorySelect'
 import { setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate } from '../actions/filters'
 
 export class ExpenseListFilters extends React.Component {
@@ -38,6 +39,7 @@ export class ExpenseListFilters extends React.Component {
               onChange={this.onTextChange}
             />
           </div>
+          <ExpensesCategorySelect defaultValue='Loading...' />
           <div className='input-group__item'>
             <select
               className='select'
