@@ -1,5 +1,9 @@
 import database from '../firebase/firebase'
 
+export const startRegisterCategories = (categories, uid) => {
+  return database.ref(`users/${uid}/categories`).set({...categories})
+}
+
 // SET_CATEGORIES
 export const setCategories = (categories) => ({
   type: 'SET_CATEGORIES',
@@ -29,6 +33,9 @@ export const startSetCategories = () => (dispatch, getState) => {
       database.ref(`categories`).once('value').then((defaultSnapshot) => {
         categories = transformToArray(defaultSnapshot)
         dispatch(setCategories(categories))
+
+        return defaultSnapshot.hasChildren() &&
+          startRegisterCategories(defaultSnapshot.val(), uid)
       })
     }
   })
