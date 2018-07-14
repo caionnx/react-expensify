@@ -39,7 +39,11 @@ export class ExpenseListFilters extends React.Component {
               onChange={this.onTextChange}
             />
           </div>
-          <ExpensesCategorySelect defaultValue='Loading...' />
+          <div className='input-group__item'>
+            <ExpensesCategorySelect
+              defaultValue='none'
+              defaultText='Filter By' />
+          </div>
           <div className='input-group__item'>
             <select
               className='select'
