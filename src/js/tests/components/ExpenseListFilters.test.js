@@ -4,7 +4,7 @@ import moment from 'moment'
 import { ExpenseListFilters } from '../../components/ExpenseListFilters'
 import { filters, altFilters } from '../fixtures/filters'
 
-let setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate, wrapper
+let setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate, setCategory, wrapper
 
 beforeEach(() => {
   setTextFilter = jest.fn()
@@ -12,6 +12,7 @@ beforeEach(() => {
   sortByAmount = jest.fn()
   setStartDate = jest.fn()
   setEndDate = jest.fn()
+  setCategory = jest.fn()
   wrapper = shallow(
     <ExpenseListFilters
       filters={filters}
@@ -20,6 +21,7 @@ beforeEach(() => {
       sortByAmount={sortByAmount}
       setStartDate={setStartDate}
       setEndDate={setEndDate}
+      setCategory={setCategory}
     />
   )
 })

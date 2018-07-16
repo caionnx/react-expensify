@@ -27,7 +27,10 @@ export class ExpensesCategorySelect extends React.Component {
         value={this.state.value}
         onChange={this.onChangeOption(this.props.onChange)}>
         <option key={defaultValue} value='none'>{this.props.defaultText}</option>
-        { categories.map(ct => <option key={ct.id} value={ct.id}>{ct.value}</option>) }
+        { categories
+          ? categories.map(ct => <option key={ct.id} value={ct.id}>{ct.value}</option>)
+          : ''
+        }
       </select>
     )
   }
