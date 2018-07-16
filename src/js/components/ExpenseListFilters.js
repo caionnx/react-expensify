@@ -88,13 +88,15 @@ ExpenseListFilters.propTypes = {
     endDate: PropTypes.object,
     sortBy: PropTypes.string,
     startDate: PropTypes.object,
-    text: PropTypes.string
+    text: PropTypes.string,
+    category: PropTypes.string
   }),
   setEndDate: PropTypes.func.isRequired,
   setStartDate: PropTypes.func.isRequired,
   setTextFilter: PropTypes.func.isRequired,
   sortByAmount: PropTypes.func.isRequired,
-  sortByDate: PropTypes.func.isRequired
+  sortByDate: PropTypes.func.isRequired,
+  setCategory: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
