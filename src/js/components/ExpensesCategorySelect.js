@@ -4,20 +4,13 @@ import { startSetCategories } from '../actions/categories'
 
 export class ExpensesCategorySelect extends React.Component {
   state = {
-    value: null
+    value: this.props.defaultValue
   }
 
   componentDidMount () {
     if (this.props.categories && !this.props.categories.length) {
       this.props.fillCategories()
     }
-  }
-
-  static getDerivedStateFromProps (props, state) {
-    if (!state.value) {
-      return { value: props.defaultValue }
-    }
-    return null
   }
 
   onChangeOption = (callbackFn) => (event) => {
