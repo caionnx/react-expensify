@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import { startSetCategories } from '../actions/categories'
 
 export class ExpensesCategorySelect extends React.Component {
@@ -30,6 +31,14 @@ export class ExpensesCategorySelect extends React.Component {
       </select>
     )
   }
+}
+
+ExpensesCategorySelect.propTypes = {
+  defaultValue: PropTypes.string.isRequired,
+  defaultText: PropTypes.string.isRequired,
+  categories: PropTypes.array,
+  onChange: PropTypes.func,
+  fillCategories: PropTypes.func.isRequired
 }
 
 const mapStateToProps = ({ categories }) => ({
