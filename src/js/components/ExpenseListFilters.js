@@ -3,7 +3,14 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { DateRangePicker } from 'react-dates'
 import ExpensesCategorySelect from './ExpensesCategorySelect'
-import { setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate } from '../actions/filters'
+import {
+  setTextFilter,
+  sortByDate,
+  sortByAmount,
+  setStartDate,
+  setEndDate,
+  setCategory
+} from '../actions/filters'
 
 export class ExpenseListFilters extends React.Component {
   state = {
@@ -26,6 +33,9 @@ export class ExpenseListFilters extends React.Component {
       this.props.sortByAmount()
     }
   }
+  onCategoryChange = (category) => {
+    this.props.setCategory(category)
+  }
   render () {
     return (
       <div className='content-container'>
@@ -41,8 +51,9 @@ export class ExpenseListFilters extends React.Component {
           </div>
           <div className='input-group__item'>
             <ExpensesCategorySelect
-              defaultValue='none'
-              defaultText='Filter By' />
+              onChange={this.onCategoryChange}
+              defaultValue={this.props.filters.category}
+              defaultText='All categories' />
           </div>
           <div className='input-group__item'>
             <select
@@ -95,7 +106,8 @@ const mapDispatchToProps = (dispatch) => ({
   sortByDate: () => dispatch(sortByDate()),
   sortByAmount: () => dispatch(sortByAmount()),
   setStartDate: (startDate) => dispatch(setStartDate(startDate)),
-  setEndDate: (endDate) => dispatch(setEndDate(endDate))
+  setEndDate: (endDate) => dispatch(setEndDate(endDate)),
+  setCategory: (category) => dispatch(setCategory(category))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpenseListFilters)
