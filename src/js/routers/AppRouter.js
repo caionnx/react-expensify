@@ -5,6 +5,7 @@ import LoginPage from '../components/LoginPage'
 import ExpenseDashboardPage from '../components/ExpenseDashboardPage'
 import AddExpensePage from '../components/AddExpensePage'
 import EditExpensePage from '../components/EditExpensePage'
+import EditCategoriesPage from '../components/EditCategoriesPage'
 import NotFoundPage from '../components/NotFoundPage'
 import PrivateRoute from './PrivateRoute'
 import PublicRoute from './PublicRoute'
@@ -17,6 +18,7 @@ export const SwitchRoutes = () => (
     <PrivateRoute path='/dashboard' component={ExpenseDashboardPage} />
     <PrivateRoute path='/create' component={AddExpensePage} />
     <PrivateRoute path='/edit/:id' component={EditExpensePage} />
+    <PrivateRoute path='/edit_categories/' component={EditCategoriesPage} />
     <Route component={NotFoundPage} />
   </Switch>
 )
