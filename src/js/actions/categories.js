@@ -1,5 +1,20 @@
 import database from '../firebase/firebase'
 
+// REMOVE_CATEGORY
+export const removeCategory = (id) => ({
+  type: 'REMOVE_CATEGORY',
+  id
+})
+
+export const startRemoveCategory = ({ id } = {}) => (dispatch, getState) => {
+  const uid = getState().auth.uid
+  console.log(id)
+
+  return database.ref(`users/${uid}/categories/${id}`).remove().then(() => {
+    dispatch(removeCategory(id))
+  })
+}
+
 export const startRegisterCategories = (categories, uid) => {
   return database.ref(`users/${uid}/categories`).set({...categories})
 }
