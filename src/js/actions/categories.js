@@ -8,7 +8,6 @@ export const removeCategory = (id) => ({
 
 export const startRemoveCategory = ({ id } = {}) => (dispatch, getState) => {
   const uid = getState().auth.uid
-  console.log(id)
 
   return database.ref(`users/${uid}/categories/${id}`).remove().then(() => {
     dispatch(removeCategory(id))
