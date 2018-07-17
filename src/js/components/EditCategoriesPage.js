@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Modal from 'react-modal'
+import Modal from './Modal'
 import slugify from 'slugify'
 import PropTypes from 'prop-types'
 import { startSetCategories, startRemoveCategory } from '../actions/categories'
@@ -79,18 +79,14 @@ export class EditCategoriesPage extends React.Component {
           </div>
           <Modal
             isOpen={this.state.removeCategoryModal}
-            onRequestClose={this.onCloseRemoveCategoryModal}
-            appElement={document.getElementById('app')}
-            contentLabel='Remove Expense Modal'
-            closeTimeoutMS={200}
-            className='modal'>
-
-            <p className='modal__body'>Are you sure you want to remove this category?</p>
-            <div className='modal__options'>
-              <button id='removeExpense' className='button button--secondary' onClick={this.onRemove}>Remove</button>
-              <button id='closeRemoveExpenseModal' className='button' onClick={this.onCloseRemoveCategoryModal}>Cancel</button>
-            </div>
-          </Modal>
+            label='Remove category'
+            className='modal'
+            body='Are you sure you want to remove this category?'
+            confirmText='Remove'
+            cancelText='Cancel'
+            thunk
+            onConfirm={this.onRemove}
+            onClose={this.onCloseRemoveCategoryModal} />
 
           {this.state.error && <p className='form__error'>{this.state.error}</p>}
           <form onSubmit={this.onAddCategory}>
