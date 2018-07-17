@@ -14,6 +14,21 @@ export const startRemoveCategory = ({ id } = {}) => (dispatch, getState) => {
   })
 }
 
+// ADD_CATEGORY
+export const addCategory = (category) => ({
+  type: 'ADD_CATEGORY',
+  category
+})
+
+export const startAddCategory = (category = {}) => (dispatch, getState) => {
+  const uid = getState().auth.uid
+  const { id, value } = category
+
+  return database.ref(`users/${uid}/categories/${id}`).set(value).then(() => {
+    dispatch(addCategory(category))
+  })
+}
+
 export const startRegisterCategories = (categories, uid) => {
   return database.ref(`users/${uid}/categories`).set({...categories})
 }
