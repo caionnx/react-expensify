@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { default as ReactModal } from 'react-modal'
 
 const Modal = (props) => (
@@ -17,5 +18,16 @@ const Modal = (props) => (
     </div>
   </ReactModal>
 )
+
+Modal.propTypes = {
+  className: PropTypes.string,
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onConfirm: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
+  body: PropTypes.any.isRequired,
+  confirmText: PropTypes.string.isRequired,
+  cancelText: PropTypes.string.isRequired
+}
 
 export default Modal
