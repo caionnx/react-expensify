@@ -3,7 +3,11 @@ import { connect } from 'react-redux'
 import Modal from './Modal'
 import slugify from 'slugify'
 import PropTypes from 'prop-types'
-import { startSetCategories, startRemoveCategory } from '../actions/categories'
+import {
+  startSetCategories,
+  startRemoveCategory,
+  startAddCategory
+} from '../actions/categories'
 
 export class EditCategoriesPage extends React.Component {
   state = {
@@ -28,14 +32,15 @@ export class EditCategoriesPage extends React.Component {
     event.preventDefault()
     const node = event.target.querySelector(`#new-category`)
     const value = node && node.value
-    const slug = slugify(value, { replacement: '-', remove: null, lower: true })
+    const id = slugify(value, { replacement: '-', remove: null, lower: true })
 
-    if (slug === '') {
+    if (id === '') {
       this.setState(() => ({ error: 'Please provide category name.' }))
-    } else if (this.props.categories.filter((item) => item.id === slug).length) {
+    } else if (this.props.categories.filter((item) => item.id === id).length) {
       this.setState(() => ({ error: 'Category already registered.' }))
     } else {
       this.setState(() => ({ error: '' }))
+      this.props.startAddCategory({ id, value })
       node.value = ''
     }
   }
@@ -108,7 +113,8 @@ export class EditCategoriesPage extends React.Component {
 EditCategoriesPage.propTypes = {
   categories: PropTypes.array,
   fillCategories: PropTypes.func.isRequired,
-  startRemoveCategory: PropTypes.func.isRequired
+  startRemoveCategory: PropTypes.func.isRequired,
+  startAddCategory: PropTypes.func.isRequired
 }
 
 const mapStateToProps = ({ categories }) => ({
@@ -117,7 +123,8 @@ const mapStateToProps = ({ categories }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fillCategories: () => dispatch(startSetCategories()),
-  startRemoveCategory: (uid) => dispatch(startRemoveCategory(uid))
+  startRemoveCategory: (uid) => dispatch(startRemoveCategory(uid)),
+  startAddCategory: (category) => dispatch(startAddCategory(category))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditCategoriesPage)
