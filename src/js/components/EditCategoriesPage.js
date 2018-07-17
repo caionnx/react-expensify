@@ -2,18 +2,25 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Modal from 'react-modal'
 import PropTypes from 'prop-types'
-import { startSetCategories } from '../actions/categories'
+import { startSetCategories, startRemoveCategory } from '../actions/categories'
 
 export class EditCategoriesPage extends React.Component {
   state = {
     removeCategoryModal: false,
-    uidToRemove: false
+    idToRemove: false
   }
   onOpenRemoveCategoryModal = (id) => {
-    this.setState({ removeCategoryModal: true })
+    this.setState({ removeCategoryModal: true, idToRemove: id })
   }
   onCloseRemoveCategoryModal = () => {
     this.setState({ removeCategoryModal: false })
+  }
+  onRemove = () => {
+    if (this.state.idToRemove) {
+      this.props.startRemoveCategory({ id: this.state.idToRemove }).then(() => {
+        this.setState({ removeCategoryModal: false })
+      })
+    }
   }
   componentDidMount () {
     const { categories } = this.props
@@ -63,8 +70,8 @@ export class EditCategoriesPage extends React.Component {
 
             <p className='modal__body'>Are you sure you want to remove this category?</p>
             <div className='modal__options'>
-              <button id='closeRemoveExpenseModal' className='button' onClick={this.onCloseRemoveCategoryModal}>Cancel</button>
               <button id='removeExpense' className='button button--secondary' onClick={this.onRemove}>Remove</button>
+              <button id='closeRemoveExpenseModal' className='button' onClick={this.onCloseRemoveCategoryModal}>Cancel</button>
             </div>
           </Modal>
         </div>
@@ -75,7 +82,8 @@ export class EditCategoriesPage extends React.Component {
 
 EditCategoriesPage.propTypes = {
   categories: PropTypes.array,
-  fillCategories: PropTypes.func.isRequired
+  fillCategories: PropTypes.func.isRequired,
+  startRemoveCategory: PropTypes.func.isRequired
 }
 
 const mapStateToProps = ({ categories }) => ({
@@ -83,7 +91,8 @@ const mapStateToProps = ({ categories }) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fillCategories: () => dispatch(startSetCategories())
+  fillCategories: () => dispatch(startSetCategories()),
+  startRemoveCategory: (uid) => dispatch(startRemoveCategory(uid))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditCategoriesPage)
