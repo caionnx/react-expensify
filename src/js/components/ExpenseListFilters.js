@@ -52,7 +52,7 @@ export class ExpenseListFilters extends React.Component {
           <div className='input-group__item'>
             <ExpensesCategorySelect
               onChange={this.onCategoryChange}
-              defaultValue={this.props.filters.category}
+              defaultValue={this.props.filters.category || ''}
               defaultText='All categories' />
           </div>
           <div className='input-group__item'>
