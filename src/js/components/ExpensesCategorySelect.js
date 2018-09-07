@@ -14,7 +14,7 @@ export class ExpensesCategorySelect extends React.Component {
     if (categories && !categories.length) {
       fillCategories()
     }
-    if (!categories.filter(ct => ct.id === this.state.value).length) {
+    if (categories && !categories.filter(ct => ct.id === this.state.value).length) {
       this.props.onChange('')
     }
   }
