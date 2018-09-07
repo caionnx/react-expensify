@@ -35,7 +35,7 @@ export const setCategories = (categories) => ({
   categories
 })
 
-const transformSnapshotToArray = (snapshot = []) => {
+export const transformSnapshotToArray = (snapshot = []) => {
   const arr = []
   snapshot.forEach(el => {
     arr.push({
@@ -66,13 +66,16 @@ export const startAddDefaultCategories = () => (dispatch, getState) => {
   const uid = getState().auth.uid
   let categories
 
-  return database.ref('categories').once('value').then((snapshot) => {
-    categories = transformSnapshotToArray(snapshot)
+  return new Promise((resolve) => {
+    database.ref('categories').once('value').then((snapshot) => {
+      categories = transformSnapshotToArray(snapshot)
 
-    if (!categories.length) return false
+      if (!categories.length) return false
 
-    return startRegisterCategories(snapshot.val(), uid).then(() => {
-      dispatch(setCategories(categories))
+      startRegisterCategories(snapshot.val(), uid).then(() => {
+        dispatch(setCategories(categories))
+        resolve(true)
+      })
     })
   })
 }
