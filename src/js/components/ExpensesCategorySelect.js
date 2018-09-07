@@ -5,12 +5,17 @@ import { startSetCategories } from '../actions/categories'
 
 export class ExpensesCategorySelect extends React.Component {
   state = {
-    value: this.props.defaultValue
+    value: this.props.defaultValue,
+    firstTimeMount: true
   }
 
   componentDidMount () {
-    if (this.props.categories && !this.props.categories.length) {
-      this.props.fillCategories()
+    const { categories, fillCategories } = this.props
+    if (categories && !categories.length) {
+      fillCategories()
+    }
+    if (!categories.filter(ct => ct.id === this.state.value).length) {
+      this.props.onChange('')
     }
   }
 
