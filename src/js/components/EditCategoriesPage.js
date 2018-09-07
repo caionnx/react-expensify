@@ -6,7 +6,8 @@ import PropTypes from 'prop-types'
 import {
   startSetCategories,
   startRemoveCategory,
-  startAddCategory
+  startAddCategory,
+  startAddDefaultCategories
 } from '../actions/categories'
 
 export class EditCategoriesPage extends React.Component {
@@ -81,6 +82,17 @@ export class EditCategoriesPage extends React.Component {
                   </div>
               )
             }
+            {
+              (!categories || !categories.length) &&
+              <div className='list-item list-item--message'>
+                <div>
+                  <h3 className='list-item__title'>You dont have any category registered.</h3>
+                  <button className='button' onClick={() => this.props.startAddDefaultCategories()}>
+                    Start with standard categories
+                  </button>
+                </div>
+              </div>
+            }
           </div>
           <Modal
             isOpen={this.state.removeCategoryModal}
@@ -114,7 +126,8 @@ EditCategoriesPage.propTypes = {
   categories: PropTypes.array,
   fillCategories: PropTypes.func.isRequired,
   startRemoveCategory: PropTypes.func.isRequired,
-  startAddCategory: PropTypes.func.isRequired
+  startAddCategory: PropTypes.func.isRequired,
+  startAddDefaultCategories: PropTypes.func.isRequired
 }
 
 const mapStateToProps = ({ categories }) => ({
@@ -124,7 +137,8 @@ const mapStateToProps = ({ categories }) => ({
 const mapDispatchToProps = (dispatch) => ({
   fillCategories: () => dispatch(startSetCategories()),
   startRemoveCategory: (uid) => dispatch(startRemoveCategory(uid)),
-  startAddCategory: (category) => dispatch(startAddCategory(category))
+  startAddCategory: (category) => dispatch(startAddCategory(category)),
+  startAddDefaultCategories: () => dispatch(startAddDefaultCategories())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditCategoriesPage)

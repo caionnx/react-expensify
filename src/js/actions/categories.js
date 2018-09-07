@@ -29,43 +29,50 @@ export const startAddCategory = (category = {}) => (dispatch, getState) => {
   })
 }
 
-export const startRegisterCategories = (categories, uid) => {
-  return database.ref(`users/${uid}/categories`).set({...categories})
-}
-
 // SET_CATEGORIES
 export const setCategories = (categories) => ({
   type: 'SET_CATEGORIES',
   categories
 })
 
+const transformSnapshotToArray = (snapshot = []) => {
+  const arr = []
+  snapshot.forEach(el => {
+    arr.push({
+      id: el.key,
+      value: el.val()
+    })
+  })
+
+  return arr
+}
+
 export const startSetCategories = () => (dispatch, getState) => {
   const uid = getState().auth.uid
-  const transformToArray = (object) => {
-    const arr = []
-    object.forEach(el => {
-      arr.push({
-        id: el.key,
-        value: el.val()
-      })
-    })
-
-    return arr
-  }
+  let categories
 
   return database.ref(`users/${uid}/categories`).once('value').then((snapshot) => {
-    let categories
-    if (snapshot.hasChildren()) {
-      categories = transformToArray(snapshot)
-      dispatch(setCategories(categories))
-    } else {
-      database.ref(`categories`).once('value').then((defaultSnapshot) => {
-        categories = transformToArray(defaultSnapshot)
-        dispatch(setCategories(categories))
+    categories = transformSnapshotToArray(snapshot)
 
-        return defaultSnapshot.hasChildren() &&
-          startRegisterCategories(defaultSnapshot.val(), uid)
-      })
-    }
+    return categories.length && dispatch(setCategories(categories))
+  })
+}
+
+export const startRegisterCategories = (categories, uid) => {
+  return database.ref(`users/${uid}/categories`).set({...categories})
+}
+
+export const startAddDefaultCategories = () => (dispatch, getState) => {
+  const uid = getState().auth.uid
+  let categories
+
+  return database.ref('categories').once('value').then((snapshot) => {
+    categories = transformSnapshotToArray(snapshot)
+
+    if (!categories.length) return false
+
+    return startRegisterCategories(snapshot.val(), uid).then(() => {
+      dispatch(setCategories(categories))
+    })
   })
 }
