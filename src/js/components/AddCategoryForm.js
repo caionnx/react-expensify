@@ -6,13 +6,13 @@ import { startAddCategory } from '../actions/categories'
 
 export class AddCategoryForm extends React.Component {
   state = {
-    error: ''
+    error: '',
+    newCategory: ''
   }
 
   onAddCategory = (event) => {
     event.preventDefault()
-    const node = event.target.querySelector(`#new-category`)
-    const value = node && node.value
+    const value = this.state.newCategory
     const id = slugify(value, { replacement: '-', remove: null, lower: true })
 
     if (id === '') {
@@ -24,20 +24,28 @@ export class AddCategoryForm extends React.Component {
       return
     }
 
-    this.setState(() => ({ error: '' }))
+    this.setState(() => ({ error: '', newCategory: '' }))
     this.props.startAddCategory({ id, value })
-    node.value = ''
+  }
+
+  onInputChange = (event) => {
+    this.setState({ newCategory: event.target.value })
   }
 
   render () {
-    const { error } = this.state
+    const { error, newCategory } = this.state
 
     return (
       <form onSubmit={this.onAddCategory}>
         {error && <p className='form__error'>{error}</p>}
         <div className='input-group'>
           <div className='input-group__item'>
-            <input id='new-category' className='text-input' placeholder='New Category' type='text' />
+            <input
+              value={newCategory}
+              onChange={this.onInputChange}
+              className='text-input'
+              placeholder='New Category'
+              type='text' />
           </div>
           <div className='input-group__item'>
             <button className='button'>Add Category</button>
