@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render AddCategoryForm correctly 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <div
+    className="input-group"
+  >
+    <div
+      className="input-group__item"
+    >
+      <input
+        className="text-input"
+        onChange={[Function]}
+        placeholder="New Category"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="input-group__item"
+    >
+      <button
+        className="button"
+      >
+        Add Category
+      </button>
+    </div>
+  </div>
+</form>
+`;
