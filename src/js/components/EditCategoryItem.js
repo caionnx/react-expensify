@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const EditCategoryItem = ({ category, buttonAction }) => (
+export const EditCategoryItem = ({ category, buttonAction }) => (
   <div className='list-item' key={category.id}>
     <h3 className='list-item__title'>{category.value}</h3>
     <button onClick={() => buttonAction(category.id)}>
