@@ -1,14 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Modal from './Modal'
-import slugify from 'slugify'
 import PropTypes from 'prop-types'
 import {
   startSetCategories,
   startRemoveCategory,
-  startAddCategory,
   startAddDefaultCategories
 } from '../actions/categories'
+import Modal from './Modal'
+import EditCategoryItem from './EditCategoryItem'
+import AddStandardCategories from './AddStandardCategories'
+import AddCategoryForm from './AddCategoryForm'
 
 export class EditCategoriesPage extends React.Component {
   state = {
@@ -29,22 +30,7 @@ export class EditCategoriesPage extends React.Component {
       })
     }
   }
-  onAddCategory = (event) => {
-    event.preventDefault()
-    const node = event.target.querySelector(`#new-category`)
-    const value = node && node.value
-    const id = slugify(value, { replacement: '-', remove: null, lower: true })
 
-    if (id === '') {
-      this.setState(() => ({ error: 'Please provide category name.' }))
-    } else if (this.props.categories.filter((item) => item.id === id).length) {
-      this.setState(() => ({ error: 'Category already registered.' }))
-    } else {
-      this.setState(() => ({ error: '' }))
-      this.props.startAddCategory({ id, value })
-      node.value = ''
-    }
-  }
   componentDidMount () {
     const { categories } = this.props
 
@@ -65,35 +51,24 @@ export class EditCategoriesPage extends React.Component {
         </div>
         <div className='content-container'>
           <div className='list-header'>
-            <div className='show-for-mobile'>Categories</div>
-            <div className='show-for-desktop'>Categories</div>
+            Categories
           </div>
           <div className='list-body'>
             {
-              categories && categories.map(
-                item =>
-                  <div className='list-item' key={item.id}>
-                    <h3 className='list-item__title'>{item.value}</h3>
-                    <button onClick={() => this.onOpenRemoveCategoryModal(item.id)}>
-                      <svg viewBox='0 0 12 12' width='12' height='12'>
-                        <path fillRule='evenodd' d='M11.53.47a.75.75 0 0 0-1.061 0l-4.47 4.47L1.529.47A.75.75 0 1 0 .468 1.531l4.47 4.47-4.47 4.47a.75.75 0 1 0 1.061 1.061l4.47-4.47 4.47 4.47a.75.75 0 1 0 1.061-1.061l-4.47-4.47 4.47-4.47a.75.75 0 0 0 0-1.061z' />
-                      </svg>
-                    </button>
-                  </div>
+              categories &&
+              categories.map(category =>
+                <EditCategoryItem
+                  key={category.id}
+                  category={category}
+                  buttonAction={this.onOpenRemoveCategoryModal} />
               )
             }
             {
               (!categories || !categories.length) &&
-              <div className='list-item list-item--message'>
-                <div>
-                  <h3 className='list-item__title'>You dont have any category registered.</h3>
-                  <button className='button' onClick={() => this.props.startAddDefaultCategories()}>
-                    Start with standard categories
-                  </button>
-                </div>
-              </div>
+              <AddStandardCategories buttonAction={this.props.startAddDefaultCategories} />
             }
           </div>
+
           <Modal
             isOpen={this.state.removeCategoryModal}
             label='Remove category'
@@ -105,17 +80,7 @@ export class EditCategoriesPage extends React.Component {
             onConfirm={this.onRemove}
             onClose={this.onCloseRemoveCategoryModal} />
 
-          {this.state.error && <p className='form__error'>{this.state.error}</p>}
-          <form onSubmit={this.onAddCategory}>
-            <div className='input-group'>
-              <div className='input-group__item'>
-                <input id='new-category' className='text-input' placeholder='New Category' type='text' />
-              </div>
-              <div className='input-group__item'>
-                <button className='button'>Add Category</button>
-              </div>
-            </div>
-          </form>
+          <AddCategoryForm />
         </div>
       </div>
     )
@@ -126,7 +91,6 @@ EditCategoriesPage.propTypes = {
   categories: PropTypes.array,
   fillCategories: PropTypes.func.isRequired,
   startRemoveCategory: PropTypes.func.isRequired,
-  startAddCategory: PropTypes.func.isRequired,
   startAddDefaultCategories: PropTypes.func.isRequired
 }
 
@@ -137,7 +101,6 @@ const mapStateToProps = ({ categories }) => ({
 const mapDispatchToProps = (dispatch) => ({
   fillCategories: () => dispatch(startSetCategories()),
   startRemoveCategory: (uid) => dispatch(startRemoveCategory(uid)),
-  startAddCategory: (category) => dispatch(startAddCategory(category)),
   startAddDefaultCategories: () => dispatch(startAddDefaultCategories())
 })
 
