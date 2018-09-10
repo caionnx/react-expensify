@@ -11,9 +11,12 @@ exports[`should render EditCategoryItem correctly 1`] = `
     Shopping
   </h3>
   <button
+    className="button button--link button--hover-close"
     onClick={[Function]}
+    title="Remove category"
   >
     <svg
+      className="icon"
       height="12"
       viewBox="0 0 12 12"
       width="12"
