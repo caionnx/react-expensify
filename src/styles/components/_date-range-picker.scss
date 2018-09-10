@@ -1,0 +1,29 @@
+.DateRangePicker{
+  width: 100%;
+
+  .DateRangePickerInput{
+    width: 100%;
+  }
+
+  .DateInput{
+    &:first-child{
+      padding-left: 5px;
+      padding-right: 0;
+      width: 110px;
+    }
+    padding-left: 0;
+    padding-right: 0;
+    width: 108px;
+  }
+
+  button{
+    margin-left: 3px;
+    margin-right: 3px;
+    padding-left: 0;
+    padding-right: 7px;
+
+    &:hover {
+      background: transparent;
+    }
+  }
+}
