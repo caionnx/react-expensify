@@ -8,7 +8,7 @@ exports[`should render AddCategoryForm correctly 1`] = `
     className="input-group"
   >
     <div
-      className="input-group__item"
+      className="input-group__item input-group__item--expanded"
     >
       <input
         className="text-input"
@@ -22,7 +22,7 @@ exports[`should render AddCategoryForm correctly 1`] = `
       className="input-group__item"
     >
       <button
-        className="button"
+        className="button button--expanded"
       >
         Add Category
       </button>
