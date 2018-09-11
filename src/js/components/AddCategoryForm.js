@@ -39,7 +39,7 @@ export class AddCategoryForm extends React.Component {
       <form onSubmit={this.onAddCategory}>
         {error && <p className='form__error'>{error}</p>}
         <div className='input-group'>
-          <div className='input-group__item'>
+          <div className='input-group__item input-group__item--expanded'>
             <input
               value={newCategory}
               onChange={this.onInputChange}
@@ -48,7 +48,7 @@ export class AddCategoryForm extends React.Component {
               type='text' />
           </div>
           <div className='input-group__item'>
-            <button className='button'>Add Category</button>
+            <button className='button button--expanded'>Add Category</button>
           </div>
         </div>
       </form>

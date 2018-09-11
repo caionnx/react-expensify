@@ -34,6 +34,12 @@
   }
 }
 
+.list-item--no-link {
+  &:hover {
+    background: none;
+  }
+}
+
 .list-item--message {
   align-items: center;
   color: $grey;
