@@ -34,11 +34,18 @@
   }
 }
 
+.list-item--no-link {
+  &:hover {
+    background: none;
+  }
+}
+
 .list-item--message {
   align-items: center;
   color: $grey;
   justify-content: center;
   padding: $m-size;
+  text-align: center;
   &:hover {
     background: none;
   }

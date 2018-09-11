@@ -7,7 +7,8 @@ test('should setup default filter values', () => {
     text: '',
     sortBy: 'date',
     startDate: moment().startOf('month'),
-    endDate: moment().endOf('month')
+    endDate: moment().endOf('month'),
+    category: 'none'
   })
 })
 
@@ -56,4 +57,14 @@ test('should set endDate filter', () => {
   }
   const state = filtersReducer(undefined, action)
   expect(state.endDate).toEqual(endDate)
+})
+
+test('should set category filter', () => {
+  const category = 'podcast'
+  const action = {
+    type: 'SET_CATEGORY',
+    category
+  }
+  const state = filtersReducer(undefined, action)
+  expect(state.category).toEqual(category)
 })

@@ -2,6 +2,7 @@ import React from 'react'
 import moment from 'moment'
 import PropTypes from 'prop-types'
 import { SingleDatePicker } from 'react-dates'
+import ExpensesCategorySelect from './ExpensesCategorySelect'
 
 export default class ExpenseForm extends React.Component {
   state = {
@@ -9,8 +10,16 @@ export default class ExpenseForm extends React.Component {
     note: this.props.expense ? this.props.expense.note : '',
     amount: this.props.expense ? (this.props.expense.amount / 100).toString() : '',
     createdAt: this.props.expense ? moment(this.props.expense.createdAt) : moment(),
+    category: this.setCategoryOnState(this.props.expense),
     calendarFocused: false,
     error: ''
+  }
+  setCategoryOnState (expense) {
+    if (expense && expense.category) {
+      return expense.category
+    }
+
+    return 'none'
   }
   onDescriptionChange = (e) => {
     const description = e.target.value
@@ -35,6 +44,9 @@ export default class ExpenseForm extends React.Component {
   onFocusChange = ({ focused }) => {
     this.setState(() => ({ calendarFocused: focused }))
   }
+  onCategoryChange = (category) => {
+    this.setState(() => ({ category }))
+  }
   onSubmit = (e) => {
     e.preventDefault()
 
@@ -46,7 +58,8 @@ export default class ExpenseForm extends React.Component {
         description: this.state.description,
         amount: parseFloat(this.state.amount, 10) * 100,
         createdAt: this.state.createdAt.valueOf(),
-        note: this.state.note
+        note: this.state.note,
+        category: this.state.category
       })
     }
   }
@@ -69,6 +82,10 @@ export default class ExpenseForm extends React.Component {
           value={this.state.amount}
           onChange={this.onAmountChange}
         />
+        <ExpensesCategorySelect
+          defaultValue={this.state.category || 'none'}
+          onChange={this.onCategoryChange}
+          defaultText='Select a Category' />
         <SingleDatePicker
           date={this.state.createdAt}
           onDateChange={this.onDateChange}

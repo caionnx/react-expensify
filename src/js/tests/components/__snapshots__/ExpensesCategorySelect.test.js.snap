@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ExpensesCategorySelect correctly 1`] = `
+<select
+  className="select"
+  onChange={[Function]}
+  value="none"
+>
+  <option
+    key="none"
+    value="none"
+  >
+    All categories
+  </option>
+  <option
+    key="shopping"
+    value="shopping"
+  >
+    Shopping
+  </option>
+  <option
+    key="sports"
+    value="sports"
+  >
+    Sports
+  </option>
+</select>
+`;

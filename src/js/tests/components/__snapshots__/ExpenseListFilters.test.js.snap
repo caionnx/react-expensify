@@ -21,6 +21,15 @@ exports[`should render ExpenseListFilters correctly 1`] = `
     <div
       className="input-group__item"
     >
+      <Connect(ExpensesCategorySelect)
+        defaultText="All categories"
+        defaultValue=""
+        onChange={[Function]}
+      />
+    </div>
+    <div
+      className="input-group__item"
+    >
       <select
         className="select"
         onChange={[Function]}
@@ -145,6 +154,15 @@ exports[`should render ExpenseListFilters with alt data correctly 1`] = `
         placeholder="Search expenses"
         type="text"
         value="bills"
+      />
+    </div>
+    <div
+      className="input-group__item"
+    >
+      <Connect(ExpensesCategorySelect)
+        defaultText="All categories"
+        defaultValue=""
+        onChange={[Function]}
       />
     </div>
     <div

@@ -2,7 +2,7 @@ import moment from 'moment'
 
 // Get visible/hidden expenses
 
-export default (expenses, { text, sortBy, startDate, endDate }) => {
+export default (expenses, { text, sortBy, startDate, endDate, category }) => {
   const filtered = []
   const unfiltered = []
 
@@ -11,8 +11,9 @@ export default (expenses, { text, sortBy, startDate, endDate }) => {
     const startDateMatch = startDate ? startDate.isSameOrBefore(createdAtMoment, 'day') : true
     const endDateMatch = endDate ? endDate.isSameOrAfter(createdAtMoment, 'day') : true
     const textMatch = expense.description.toLowerCase().includes(text.toLowerCase())
+    const categoryMatch = category && category !== 'none' ? expense.category === category : true
 
-    if (startDateMatch && endDateMatch && textMatch) {
+    if (startDateMatch && endDateMatch && textMatch && categoryMatch) {
       filtered.push(expense)
     } else {
       unfiltered.push(expense)

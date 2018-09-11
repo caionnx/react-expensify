@@ -2,7 +2,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { DateRangePicker } from 'react-dates'
-import { setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate } from '../actions/filters'
+import ExpensesCategorySelect from './ExpensesCategorySelect'
+import {
+  setTextFilter,
+  sortByDate,
+  sortByAmount,
+  setStartDate,
+  setEndDate,
+  setCategory
+} from '../actions/filters'
 
 export class ExpenseListFilters extends React.Component {
   state = {
@@ -25,6 +33,9 @@ export class ExpenseListFilters extends React.Component {
       this.props.sortByAmount()
     }
   }
+  onCategoryChange = (category) => {
+    this.props.setCategory(category)
+  }
   render () {
     return (
       <div className='content-container'>
@@ -37,6 +48,12 @@ export class ExpenseListFilters extends React.Component {
               value={this.props.filters.text}
               onChange={this.onTextChange}
             />
+          </div>
+          <div className='input-group__item'>
+            <ExpensesCategorySelect
+              onChange={this.onCategoryChange}
+              defaultValue={this.props.filters.category || ''}
+              defaultText='All categories' />
           </div>
           <div className='input-group__item'>
             <select
@@ -71,13 +88,15 @@ ExpenseListFilters.propTypes = {
     endDate: PropTypes.object,
     sortBy: PropTypes.string,
     startDate: PropTypes.object,
-    text: PropTypes.string
+    text: PropTypes.string,
+    category: PropTypes.string
   }),
   setEndDate: PropTypes.func.isRequired,
   setStartDate: PropTypes.func.isRequired,
   setTextFilter: PropTypes.func.isRequired,
   sortByAmount: PropTypes.func.isRequired,
-  sortByDate: PropTypes.func.isRequired
+  sortByDate: PropTypes.func.isRequired,
+  setCategory: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
@@ -89,7 +108,8 @@ const mapDispatchToProps = (dispatch) => ({
   sortByDate: () => dispatch(sortByDate()),
   sortByAmount: () => dispatch(sortByAmount()),
   setStartDate: (startDate) => dispatch(setStartDate(startDate)),
-  setEndDate: (endDate) => dispatch(setEndDate(endDate))
+  setEndDate: (endDate) => dispatch(setEndDate(endDate)),
+  setCategory: (category) => dispatch(setCategory(category))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpenseListFilters)

@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render EditCategoriesPage correctly 1`] = `
+<div>
+  <div
+    className="page-header"
+  >
+    <div
+      className="content-container"
+    >
+      <h1
+        className="page-header__title"
+      >
+        Edit your categories
+      </h1>
+    </div>
+  </div>
+  <div
+    className="content-container"
+  >
+    <div
+      className="list-header"
+    >
+      Categories
+    </div>
+    <div
+      className="list-body"
+    >
+      <EditCategoryItem
+        buttonAction={[Function]}
+        category={
+          Object {
+            "id": "shopping",
+            "value": "Shopping",
+          }
+        }
+        key="shopping"
+      />
+      <EditCategoryItem
+        buttonAction={[Function]}
+        category={
+          Object {
+            "id": "sports",
+            "value": "Sports",
+          }
+        }
+        key="sports"
+      />
+    </div>
+    <Modal
+      body="Are you sure you want to remove this category?"
+      cancelText="Cancel"
+      className="modal"
+      confirmText="Remove"
+      isOpen={false}
+      label="Remove category"
+      onClose={[Function]}
+      onConfirm={[Function]}
+      thunk={true}
+    />
+    <Connect(AddCategoryForm) />
+  </div>
+</div>
+`;
