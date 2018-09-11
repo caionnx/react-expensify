@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 export const EditCategoryItem = ({ category, buttonAction }) => (
-  <div className='list-item' key={category.id}>
+  <div className='list-item list-item--no-link' key={category.id}>
     <h3 className='list-item__title'>{category.value}</h3>
     <button title='Remove category' className='button button--link button--hover-close' onClick={() => buttonAction(category.id)}>
       <svg className='icon' viewBox='0 0 12 12' width='12' height='12'>

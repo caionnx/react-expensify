@@ -1,3 +1,5 @@
+$hover-close-animation: all ease-in .2s;
+
 .button {
   background: $blue;
   border: none;
@@ -6,6 +8,7 @@
   font-size: $font-size-large;
   font-weight: 300;
   line-height: 1;
+  outline: none;
   padding: $s-size;
   text-decoration: none;
 }
@@ -14,7 +17,10 @@
   background: none;
 }
 
-$hover-close-animation: all ease-in .2s;
+.button--expanded {
+  height: 100%;
+  width: 100%;
+}
 
 .button--hover-close {
   transition: $hover-close-animation;
