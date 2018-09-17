@@ -44,12 +44,6 @@ module.exports = (env) => {
         })
       }]
     },
-    resolve: {
-      alias: {
-        react: 'preact-compat',
-        'react-dom': 'preact-compat'
-      }
-    },
     plugins: [
       CSSExtract,
       new webpack.DefinePlugin({
