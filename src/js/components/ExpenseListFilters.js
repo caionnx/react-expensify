@@ -14,20 +14,12 @@ import {
 
 export class ExpenseListFilters extends React.Component {
   state = {
-    calendarFocused: null,
-    startDate: new Date(this.props.filters.startDate),
-    endDate: new Date(this.props.filters.endDate)
-  }
-  onDatesChange = ({ startDate, endDate }) => {
-    this.props.setStartDate(startDate)
-    this.props.setEndDate(endDate)
+    calendarFocused: null
   }
   onStartDateChange = (startDate) => {
-    this.setState({ startDate })
     this.props.setStartDate(startDate)
   }
   onEndDateChange = (endDate) => {
-    this.setState({ endDate })
     this.props.setEndDate(endDate)
   }
   onFocusChange = (calendarFocused) => {
@@ -47,8 +39,13 @@ export class ExpenseListFilters extends React.Component {
     this.props.setCategory(category)
   }
   render () {
-    const { startDate, endDate } = this.state
-    const modifiers = { start: startDate, end: endDate }
+    const {
+      startDate,
+      endDate,
+      text,
+      category,
+      sortBy
+    } = this.props.filters
 
     return (
       <div className='content-container'>
@@ -58,20 +55,20 @@ export class ExpenseListFilters extends React.Component {
               className='text-input'
               placeholder='Search expenses'
               type='text'
-              value={this.props.filters.text}
+              value={text}
               onChange={this.onTextChange}
             />
           </div>
           <div className='input-group__item'>
             <ExpensesCategorySelect
               onChange={this.onCategoryChange}
-              defaultValue={this.props.filters.category || ''}
+              defaultValue={category || ''}
               defaultText='All categories' />
           </div>
           <div className='input-group__item'>
             <select
               className='select'
-              value={this.props.filters.sortBy}
+              value={sortBy}
               onChange={this.onSortChange}
             >
               <option value='date'>Date</option>
@@ -86,7 +83,7 @@ export class ExpenseListFilters extends React.Component {
                 selectedDays: [startDate, { from: startDate, to: endDate }],
                 disabledDays: { after: endDate },
                 toMonth: endDate,
-                modifiers,
+                modifiers: { start: startDate, end: endDate },
                 numberOfMonths: 1,
                 onDayClick: () => this.endDate.getInput().focus()
               }}
@@ -101,7 +98,7 @@ export class ExpenseListFilters extends React.Component {
                 dayPickerProps={{
                   selectedDays: [startDate, { from: startDate, to: endDate }],
                   disabledDays: { before: startDate },
-                  modifiers,
+                  modifiers: { start: startDate, end: endDate },
                   month: startDate,
                   fromMonth: startDate,
                   numberOfMonths: 1
