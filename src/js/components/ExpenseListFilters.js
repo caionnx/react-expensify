@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { DateRangePicker } from 'react-dates'
+import DayPickerInput from 'react-day-picker/DayPickerInput'
 import ExpensesCategorySelect from './ExpensesCategorySelect'
 import {
   setTextFilter,
@@ -14,10 +14,20 @@ import {
 
 export class ExpenseListFilters extends React.Component {
   state = {
-    calendarFocused: null
+    calendarFocused: null,
+    startDate: new Date(this.props.filters.startDate),
+    endDate: new Date(this.props.filters.endDate)
   }
   onDatesChange = ({ startDate, endDate }) => {
     this.props.setStartDate(startDate)
+    this.props.setEndDate(endDate)
+  }
+  onStartDateChange = (startDate) => {
+    this.setState({ startDate })
+    this.props.setStartDate(startDate)
+  }
+  onEndDateChange = (endDate) => {
+    this.setState({ endDate })
     this.props.setEndDate(endDate)
   }
   onFocusChange = (calendarFocused) => {
@@ -37,6 +47,9 @@ export class ExpenseListFilters extends React.Component {
     this.props.setCategory(category)
   }
   render () {
+    const { startDate, endDate } = this.state
+    const modifiers = { start: startDate, end: endDate }
+
     return (
       <div className='content-container'>
         <div className='input-group'>
@@ -65,17 +78,37 @@ export class ExpenseListFilters extends React.Component {
               <option value='amount'>Amount</option>
             </select>
           </div>
-          <div className='input-group__item'>
-            <DateRangePicker
-              startDate={this.props.filters.startDate}
-              endDate={this.props.filters.endDate}
-              onDatesChange={this.onDatesChange}
-              focusedInput={this.state.calendarFocused}
-              onFocusChange={this.onFocusChange}
-              showClearDates
-              numberOfMonths={1}
-              isOutsideRange={() => false}
-            />
+          <div className='InputFromTo'>
+            <DayPickerInput
+              value={startDate}
+              placeholder='Start Date'
+              dayPickerProps={{
+                selectedDays: [startDate, { from: startDate, to: endDate }],
+                disabledDays: { after: endDate },
+                toMonth: endDate,
+                modifiers,
+                numberOfMonths: 1,
+                onDayClick: () => this.endDate.getInput().focus()
+              }}
+              onDayChange={this.onStartDateChange}
+            />{' '}
+            —{' '}
+            <span className='InputFromTo-to'>
+              <DayPickerInput
+                ref={el => (this.endDate = el)}
+                value={endDate}
+                placeholder='End Date'
+                dayPickerProps={{
+                  selectedDays: [startDate, { from: startDate, to: endDate }],
+                  disabledDays: { before: startDate },
+                  modifiers,
+                  month: startDate,
+                  fromMonth: startDate,
+                  numberOfMonths: 1
+                }}
+                onDayChange={this.onEndDateChange}
+              />
+            </span>
           </div>
         </div>
       </div>

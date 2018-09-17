@@ -1,4 +1,6 @@
-import moment from 'moment'
+import isBefore from 'date-fns/is_before'
+import isEqual from 'date-fns/is_equal'
+import isAfter from 'date-fns/is_after'
 
 // Get visible/hidden expenses
 
@@ -7,9 +9,9 @@ export default (expenses, { text, sortBy, startDate, endDate, category }) => {
   const unfiltered = []
 
   expenses.forEach(expense => {
-    const createdAtMoment = moment(expense.createdAt)
-    const startDateMatch = startDate ? startDate.isSameOrBefore(createdAtMoment, 'day') : true
-    const endDateMatch = endDate ? endDate.isSameOrAfter(createdAtMoment, 'day') : true
+    const createdAt = expense.createdAt
+    const startDateMatch = startDate ? isBefore(startDate, createdAt) || isEqual(createdAt, startDate) : true
+    const endDateMatch = endDate ? isAfter(endDate, createdAt) || isEqual(createdAt, endDate) : true
     const textMatch = expense.description.toLowerCase().includes(text.toLowerCase())
     const categoryMatch = category && category !== 'none' ? expense.category === category : true
 
