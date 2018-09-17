@@ -121,9 +121,9 @@ export class ExpenseListFilters extends React.Component {
 
 ExpenseListFilters.propTypes = {
   filters: PropTypes.shape({
-    endDate: PropTypes.object,
+    endDate: PropTypes.instanceOf(Date),
     sortBy: PropTypes.string,
-    startDate: PropTypes.object,
+    startDate: PropTypes.instanceOf(Date),
     text: PropTypes.string,
     category: PropTypes.string
   }),
