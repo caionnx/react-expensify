@@ -85,9 +85,11 @@ export default class ExpenseForm extends React.Component {
           defaultValue={this.state.category || 'none'}
           onChange={this.onCategoryChange}
           defaultText='Select a Category' />
-        <DayPickerInput
-          value={this.state.createdAt}
-          onDayChange={this.onDateChange} />
+        <div className='DayPickerContainer DayPickerContainer--largeInput'>
+          <DayPickerInput
+            value={this.state.createdAt}
+            onDayChange={this.onDateChange} />
+        </div>
         <textarea
           className='textarea'
           placeholder='Add a note for your expense (optional)'

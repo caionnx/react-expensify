@@ -1,49 +1,52 @@
-.DateRangePicker{
-  width: 100%;
+.DayPickerContainer {
+  border: 1px solid #cacccd;
+  display: flex;
+  padding: $s-size;
 
-  .DateRangePickerInput{
-    width: 100%;
-  }
-
-  .DateInput{
-    &:first-child{
-      padding-left: 5px;
-      padding-right: 0;
-      width: 110px;
-    }
-    padding-left: 0;
-    padding-right: 0;
-    width: 108px;
-  }
-
-  button{
-    margin-left: 3px;
-    margin-right: 3px;
-    padding-left: 0;
-    padding-right: 7px;
+  input {
+    border: none;
+    height: 100%;
+    outline: none;
+    width: 110px;
 
     &:hover {
-      background: transparent;
+      cursor: pointer;
+    }
+
+    &:focus {
+      background-color: lighten($dark-blue, 70);
     }
   }
-}
 
+  button {
+    background: transparent;
+    border: none;
+    outline: none;
+  }
 
-.InputFromTo .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
-  background-color: #f0f8ff !important;
-  color: #4a90e2;
-}
-.InputFromTo .DayPicker-Day {
-  border-radius: 0 !important;
-}
-.InputFromTo .DayPicker-Day--start {
-  border-top-left-radius: 50% !important;
-  border-bottom-left-radius: 50% !important;
-}
-.InputFromTo .DayPicker-Day--end {
-  border-top-right-radius: 50% !important;
-  border-bottom-right-radius: 50% !important;
-}
-.InputFromTo-to .DayPickerInput-Overlay {
-  margin-left: -198px;
+  .DayPicker {
+    font-size: $s-size;
+
+    &Input {
+      width: 100%;
+    }
+
+    &-Day {
+      border-radius: 0;
+    }
+
+    &-Day--start, &-Day--end {
+      background-color: $dark-blue !important;
+      color: white;
+    }
+
+    &-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+      background-color: lighten($dark-blue, 30);
+      color: white;
+    }
+  }
+
+  &--largeInput input{
+    width: 100%;
+  }
 }

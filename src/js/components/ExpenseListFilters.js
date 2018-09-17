@@ -79,7 +79,7 @@ export class ExpenseListFilters extends React.Component {
               <option value='amount'>Amount</option>
             </select>
           </div>
-          <div className='InputFromTo'>
+          <div className='DayPickerContainer'>
             <DayPickerInput
               value={startDate}
               placeholder='Start Date'
@@ -92,24 +92,21 @@ export class ExpenseListFilters extends React.Component {
                 onDayClick: () => this.endDate.getInput().focus()
               }}
               onDayChange={this.onStartDateChange}
-            />{' '}
-            —{' '}
-            <span className='InputFromTo-to'>
-              <DayPickerInput
-                ref={el => (this.endDate = el)}
-                value={endDate}
-                placeholder='End Date'
-                dayPickerProps={{
-                  selectedDays: [startDate, { from: startDate, to: endDate }],
-                  disabledDays: { before: startDate },
-                  modifiers: { start: startDate, end: endDate },
-                  month: startDate,
-                  fromMonth: startDate,
-                  numberOfMonths: 1
-                }}
-                onDayChange={this.onEndDateChange}
-              />
-            </span>
+            />
+            <DayPickerInput
+              ref={el => (this.endDate = el)}
+              value={endDate}
+              placeholder='End Date'
+              dayPickerProps={{
+                selectedDays: [startDate, { from: startDate, to: endDate }],
+                disabledDays: { before: startDate },
+                modifiers: { start: startDate, end: endDate },
+                month: startDate,
+                fromMonth: startDate,
+                numberOfMonths: 1
+              }}
+              onDayChange={this.onEndDateChange}
+            />
             <button onClick={this.onClearDates} type='button' aria-label='Clear Dates' className=''>
               <svg className="icon" viewBox="0 0 12 12" width="12" height="12">
               <path fillRule="evenodd" d="M11.53.47a.75.75 0 0 0-1.061 0l-4.47 4.47L1.529.47A.75.75 0 1 0 .468 1.531l4.47 4.47-4.47 4.47a.75.75 0 1 0 1.061 1.061l4.47-4.47 4.47 4.47a.75.75 0 1 0 1.061-1.061l-4.47-4.47 4.47-4.47a.75.75 0 0 0 0-1.061z"></path>
