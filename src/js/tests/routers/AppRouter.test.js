@@ -1,5 +1,4 @@
 import React from 'react'
-import 'react-dates/initialize'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import { Router, MemoryRouter } from 'react-router'

@@ -1,5 +1,3 @@
-import moment from 'moment'
-
 export default [{
   id: '1',
   description: 'Gum',
@@ -13,12 +11,12 @@ export default [{
   note: '',
   category: 'none',
   amount: 109500,
-  createdAt: moment.utc(0).subtract(4, 'days').valueOf()
+  createdAt: -48748745645
 }, {
   id: '3',
   description: 'Credit Card',
   note: '',
   category: 'none',
   amount: 4500,
-  createdAt: moment.utc(0).add(4, 'days').valueOf()
+  createdAt: 48748745645
 }]

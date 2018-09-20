@@ -1,5 +1,4 @@
 import React from 'react'
-import 'react-dates/initialize'
 import { shallow } from 'enzyme'
 import expenses from '../fixtures/expenses'
 import { EditExpensePage } from '../../components/EditExpensePage'
