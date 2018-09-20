@@ -13,9 +13,6 @@ import {
 } from '../actions/filters'
 
 export class ExpenseListFilters extends React.Component {
-  state = {
-    calendarFocused: null
-  }
   onClearDates = () => {
     this.props.setStartDate('')
     this.props.setEndDate('')
@@ -25,9 +22,6 @@ export class ExpenseListFilters extends React.Component {
   }
   onEndDateChange = (endDate) => {
     this.props.setEndDate(endDate)
-  }
-  onFocusChange = (calendarFocused) => {
-    this.setState(() => ({ calendarFocused }))
   }
   onTextChange = (e) => {
     this.props.setTextFilter(e.target.value)
