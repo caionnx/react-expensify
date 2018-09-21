@@ -3,6 +3,12 @@ import { shallow } from 'enzyme'
 import { ExpenseListFilters, default as ConnectedExpenseListFilters } from '../../components/ExpenseListFilters'
 import { filters, altFilters } from '../fixtures/filters'
 import configureMockStore from 'redux-mock-store'
+jest.mock('date-fns/format', () =>
+  (date) => {
+    if (date.match('1970-01-01')) return '01/01/1970'
+    if (date.match('1970-01-04')) return '04/01/1970'
+  }
+)
 const mockStore = configureMockStore()
 
 let setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate, setCategory, wrapper

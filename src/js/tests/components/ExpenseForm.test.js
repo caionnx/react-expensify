@@ -8,6 +8,8 @@ const originalDate = Date
 global.Date = jest.fn(() => DATE_TO_USE)
 global.Date.now = jest.fn()
 
+jest.mock('date-fns/format', () => () => '01/01/2018')
+
 let onSubmitProp
 let dateNowSpy
 beforeAll(() => {

@@ -39,7 +39,7 @@ exports[`should render ExpenseForm correctly 1`] = `
       clickUnselectsDay={false}
       component="input"
       dayPickerProps={Object {}}
-      format="L"
+      format="MM/DD/YYYY"
       formatDate={[Function]}
       hideOnDayClick={true}
       inputProps={Object {}}
@@ -49,7 +49,7 @@ exports[`should render ExpenseForm correctly 1`] = `
       parseDate={[Function]}
       placeholder="YYYY-M-D"
       showOverlay={false}
-      value={2018-01-01T00:00:00.000Z}
+      value="01/01/2018"
     />
   </div>
   <textarea
@@ -107,7 +107,7 @@ exports[`should render ExpenseForm correctly with expense data 1`] = `
       clickUnselectsDay={false}
       component="input"
       dayPickerProps={Object {}}
-      format="L"
+      format="MM/DD/YYYY"
       formatDate={[Function]}
       hideOnDayClick={true}
       inputProps={Object {}}
@@ -117,7 +117,7 @@ exports[`should render ExpenseForm correctly with expense data 1`] = `
       parseDate={[Function]}
       placeholder="YYYY-M-D"
       showOverlay={false}
-      value={2018-01-01T00:00:00.000Z}
+      value="01/01/2018"
     />
   </div>
   <textarea
@@ -175,7 +175,7 @@ exports[`should render error for invalid form submission 1`] = `
       clickUnselectsDay={false}
       component="input"
       dayPickerProps={Object {}}
-      format="L"
+      format="MM/DD/YYYY"
       formatDate={[Function]}
       hideOnDayClick={true}
       inputProps={Object {}}
@@ -185,7 +185,7 @@ exports[`should render error for invalid form submission 1`] = `
       parseDate={[Function]}
       placeholder="YYYY-M-D"
       showOverlay={false}
-      value={2018-01-01T00:00:00.000Z}
+      value="01/01/2018"
     />
   </div>
   <textarea
@@ -248,7 +248,7 @@ exports[`should render error for invalid form submission 2`] = `
       clickUnselectsDay={false}
       component="input"
       dayPickerProps={Object {}}
-      format="L"
+      format="MM/DD/YYYY"
       formatDate={[Function]}
       hideOnDayClick={true}
       inputProps={Object {}}
@@ -258,7 +258,7 @@ exports[`should render error for invalid form submission 2`] = `
       parseDate={[Function]}
       placeholder="YYYY-M-D"
       showOverlay={false}
-      value={2018-01-01T00:00:00.000Z}
+      value="01/01/2018"
     />
   </div>
   <textarea
