@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
+import dateFormat from 'date-fns/format'
 import ExpensesCategorySelect from './ExpensesCategorySelect'
 import {
   setTextFilter,
@@ -81,7 +82,8 @@ export class ExpenseListFilters extends React.Component {
           </div>
           <div className='DayPickerContainer'>
             <DayPickerInput
-              value={startDate}
+              format='MM/DD/YYYY'
+              value={startDate && dateFormat(startDate, 'MM/DD/YYYY')}
               placeholder='Start Date'
               dayPickerProps={{
                 selectedDays: [startDate, { from: startDate, to: endDate }],
@@ -95,7 +97,8 @@ export class ExpenseListFilters extends React.Component {
             />
             <DayPickerInput
               ref={el => (this.endDate = el)}
-              value={endDate}
+              format='MM/DD/YYYY'
+              value={endDate && dateFormat(endDate, 'MM/DD/YYYY')}
               placeholder='End Date'
               dayPickerProps={{
                 selectedDays: [startDate, { from: startDate, to: endDate }],

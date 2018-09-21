@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
+import dateFormat from 'date-fns/format'
 import ExpensesCategorySelect from './ExpensesCategorySelect'
 
 export default class ExpenseForm extends React.Component {
@@ -87,7 +88,8 @@ export default class ExpenseForm extends React.Component {
           defaultText='Select a Category' />
         <div className='DayPickerContainer DayPickerContainer--largeInput'>
           <DayPickerInput
-            value={this.state.createdAt}
+            format='MM/DD/YYYY'
+            value={dateFormat(this.state.createdAt, 'MM/DD/YYYY')}
             onDayChange={this.onDateChange} />
         </div>
         <textarea
