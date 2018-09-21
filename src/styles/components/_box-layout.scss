@@ -1,7 +1,14 @@
+@keyframes box-layout-bg {
+  0%{background-position:0% 92%}
+  50%{background-position:100% 9%}
+  100%{background-position:0% 92%}
+}
+
 .box-layout {
   align-items: center;
-  background: url('/images/bg.jpg');
-  background-size: cover;
+  animation: box-layout-bg 6s ease infinite;
+  background: linear-gradient(222deg, lighten($dark-blue, 30), $dark-blue);
+  background-size: 400% 400%;
   display: flex;
   height: 100vh;
   justify-content: center;
