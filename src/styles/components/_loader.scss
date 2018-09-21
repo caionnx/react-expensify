@@ -1,12 +1,19 @@
-.loader {
-  align-items: center;
-  display: flex;
-  height: 100vh;
-  justify-content: center;
-  width: 100vw;
+@keyframes spinner {
+  to {transform: rotate(360deg);}
 }
 
-.loader__image {
+.loader:before {
+  animation: spinner .6s linear infinite;
+  border: 1rem solid #ccc;
+  border-radius: 50%;
+  border-top-color: $blue;
+  box-sizing: border-box;
+  content: '';
+  left: 50%;
+  margin-left: -3.5rem;
+  margin-top: -3.5rem;
+  position: absolute;
+  top: 50%;
   height: 6rem;
   width: 6rem;
 }
