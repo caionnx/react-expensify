@@ -1,8 +1,9 @@
 import React from 'react'
-import 'react-dates/initialize'
 import { shallow } from 'enzyme'
 import expenses from '../fixtures/expenses'
-import { EditExpensePage } from '../../components/EditExpensePage'
+import { EditExpensePage, default as ConnectedEditExpensePage } from '../../components/EditExpensePage'
+import configureMockStore from 'redux-mock-store'
+const mockStore = configureMockStore()
 
 let startEditExpense, startRemoveExpense, history, wrapper
 
@@ -70,4 +71,13 @@ test('should handle startRemoveExpense', () => {
   return startRemoveExpense().then(() => {
     expect(history.push).toHaveBeenLastCalledWith('/dashboard')
   })
+})
+
+test('should have mapStateToProps and mapDispatchToProps', () => {
+  const store = mockStore({ expenses })
+  wrapper = shallow(<ConnectedEditExpensePage store={store} match={{params: {id: expenses[0].id}}} />)
+
+  expect(wrapper.prop('expense')).toEqual(expenses[0])
+  expect(wrapper.prop('startEditExpense')).toBeInstanceOf(Function)
+  expect(wrapper.prop('startRemoveExpense')).toBeInstanceOf(Function)
 })

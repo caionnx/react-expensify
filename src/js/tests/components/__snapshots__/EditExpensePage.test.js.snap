@@ -23,7 +23,7 @@ exports[`should render EditExpensePage 1`] = `
         Object {
           "amount": 4500,
           "category": "none",
-          "createdAt": 345600000,
+          "createdAt": 48748745645,
           "description": "Credit Card",
           "id": "3",
           "note": "",

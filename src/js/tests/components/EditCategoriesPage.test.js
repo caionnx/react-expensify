@@ -1,7 +1,9 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { EditCategoriesPage } from '../../components/EditCategoriesPage'
+import { EditCategoriesPage, default as ConnectedEditCategoriesPage } from '../../components/EditCategoriesPage'
 import categories from '../fixtures/categories'
+import configureMockStore from 'redux-mock-store'
+const mockStore = configureMockStore()
 
 let wrapper, fillCategories, startAddDefaultCategories, startRemoveCategory
 
@@ -58,4 +60,14 @@ test('should render AddStandardCategories if has not categories', () => {
 
   expect(AddStandardCategoriesComponent).toHaveLength(1)
   expect(startAddDefaultCategories).toHaveBeenCalled()
+})
+
+test('should have mapStateToProps and mapDispatchToProps', () => {
+  const store = mockStore({ categories })
+  wrapper = shallow(<ConnectedEditCategoriesPage store={store} />)
+
+  expect(wrapper.prop('categories')).toEqual(categories)
+  expect(wrapper.prop('fillCategories')).toBeInstanceOf(Function)
+  expect(wrapper.prop('startRemoveCategory')).toBeInstanceOf(Function)
+  expect(wrapper.prop('startAddDefaultCategories')).toBeInstanceOf(Function)
 })
