@@ -1,7 +1,7 @@
 import React from 'react'
-import moment from 'moment'
 import PropTypes from 'prop-types'
-import { SingleDatePicker } from 'react-dates'
+import DayPickerInput from 'react-day-picker/DayPickerInput'
+import dateFormat from 'date-fns/format'
 import ExpensesCategorySelect from './ExpensesCategorySelect'
 
 export default class ExpenseForm extends React.Component {
@@ -9,7 +9,7 @@ export default class ExpenseForm extends React.Component {
     description: this.props.expense ? this.props.expense.description : '',
     note: this.props.expense ? this.props.expense.note : '',
     amount: this.props.expense ? (this.props.expense.amount / 100).toString() : '',
-    createdAt: this.props.expense ? moment(this.props.expense.createdAt) : moment(),
+    createdAt: this.props.expense ? new Date(this.props.expense.createdAt) : new Date(),
     category: this.setCategoryOnState(this.props.expense),
     calendarFocused: false,
     error: ''
@@ -86,14 +86,12 @@ export default class ExpenseForm extends React.Component {
           defaultValue={this.state.category || 'none'}
           onChange={this.onCategoryChange}
           defaultText='Select a Category' />
-        <SingleDatePicker
-          date={this.state.createdAt}
-          onDateChange={this.onDateChange}
-          focused={this.state.calendarFocused}
-          onFocusChange={this.onFocusChange}
-          numberOfMonths={1}
-          isOutsideRange={() => false}
-        />
+        <div className='DayPickerContainer DayPickerContainer--largeInput'>
+          <DayPickerInput
+            format='MM/DD/YYYY'
+            value={dateFormat(this.state.createdAt, 'MM/DD/YYYY')}
+            onDayChange={this.onDateChange} />
+        </div>
         <textarea
           className='textarea'
           placeholder='Add a note for your expense (optional)'

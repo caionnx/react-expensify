@@ -48,91 +48,112 @@ exports[`should render ExpenseListFilters correctly 1`] = `
       </select>
     </div>
     <div
-      className="input-group__item"
+      className="DayPickerContainer"
     >
-      <withStyles(DateRangePicker)
-        anchorDirection="left"
-        customArrowIcon={null}
-        customCloseIcon={null}
-        customInputIcon={null}
-        daySize={39}
-        disabled={false}
-        displayFormat={[Function]}
-        enableOutsideDays={false}
-        endDate={null}
-        endDateId="endDate"
-        endDatePlaceholderText="End Date"
-        firstDayOfWeek={null}
-        focusedInput={null}
-        hideKeyboardShortcutsPanel={false}
-        horizontalMargin={0}
-        initialVisibleMonth={null}
-        inputIconPosition="before"
-        isDayBlocked={[Function]}
-        isDayHighlighted={[Function]}
-        isOutsideRange={[Function]}
-        isRTL={false}
-        keepOpenOnDateSelect={false}
-        minimumNights={1}
-        monthFormat="MMMM YYYY"
-        navNext={null}
-        navPrev={null}
-        numberOfMonths={1}
-        onClose={[Function]}
-        onDatesChange={[Function]}
-        onFocusChange={[Function]}
-        onNextMonthClick={[Function]}
-        onPrevMonthClick={[Function]}
-        openDirection="down"
-        orientation="horizontal"
-        phrases={
+      <DayPickerInput
+        classNames={
           Object {
-            "calendarLabel": "Calendar",
-            "chooseAvailableEndDate": [Function],
-            "chooseAvailableStartDate": [Function],
-            "clearDates": "Clear Dates",
-            "closeDatePicker": "Close",
-            "dateIsUnavailable": [Function],
-            "enterKey": "Enter key",
-            "escape": "Escape key",
-            "focusStartDate": "Interact with the calendar and add the check-in date for your trip.",
-            "hideKeyboardShortcutsPanel": "Close the shortcuts panel",
-            "homeEnd": "Home and end keys",
-            "jumpToNextMonth": "Move forward to switch to the next month",
-            "jumpToPrevMonth": "Move backward to switch to the previous month",
-            "keyboardNavigationInstructions": "Press the down arrow key to interact with the calendar and
-            select a date. Press the question mark key to get the keyboard shortcuts for changing dates.",
-            "keyboardShortcuts": "Keyboard Shortcuts",
-            "leftArrowRightArrow": "Right and left arrow keys",
-            "moveFocusByOneDay": "Move backward (left) and forward (right) by one day",
-            "moveFocusByOneMonth": "Switch months",
-            "moveFocusByOneWeek": "Move backward (up) and forward (down) by one week",
-            "moveFocustoStartAndEndOfWeek": "Go to the first or last day of a week",
-            "openThisPanel": "Open this panel",
-            "pageUpPageDown": "page up and page down keys",
-            "questionMark": "Question mark",
-            "returnFocusToInput": "Return to the date input field",
-            "selectFocusedDate": "Select the date in focus",
-            "showKeyboardShortcutsPanel": "Open the keyboard shortcuts panel",
-            "upArrowDownArrow": "up and down arrow keys",
+            "container": "DayPickerInput",
+            "overlay": "DayPickerInput-Overlay",
+            "overlayWrapper": "DayPickerInput-OverlayWrapper",
           }
         }
-        readOnly={false}
-        renderCalendarInfo={null}
-        renderDay={null}
-        renderMonth={null}
-        reopenPickerOnClearDates={false}
-        required={false}
-        screenReaderInputMessage=""
-        showClearDates={true}
-        showDefaultInputIcon={false}
-        startDate={null}
-        startDateId="startDate"
-        startDatePlaceholderText="Start Date"
-        weekDayFormat="dd"
-        withFullScreenPortal={false}
-        withPortal={false}
+        clickUnselectsDay={false}
+        component="input"
+        dayPickerProps={
+          Object {
+            "disabledDays": Object {
+              "after": undefined,
+            },
+            "modifiers": Object {
+              "end": undefined,
+              "start": undefined,
+            },
+            "numberOfMonths": 1,
+            "onDayClick": [Function],
+            "selectedDays": Array [
+              undefined,
+              Object {
+                "from": undefined,
+                "to": undefined,
+              },
+            ],
+            "toMonth": undefined,
+          }
+        }
+        format="MM/DD/YYYY"
+        formatDate={[Function]}
+        hideOnDayClick={true}
+        inputProps={Object {}}
+        keepFocus={true}
+        onDayChange={[Function]}
+        overlayComponent={[Function]}
+        parseDate={[Function]}
+        placeholder="Start Date"
+        showOverlay={false}
+        value=""
       />
+      <DayPickerInput
+        classNames={
+          Object {
+            "container": "DayPickerInput",
+            "overlay": "DayPickerInput-Overlay",
+            "overlayWrapper": "DayPickerInput-OverlayWrapper",
+          }
+        }
+        clickUnselectsDay={false}
+        component="input"
+        dayPickerProps={
+          Object {
+            "disabledDays": Object {
+              "before": undefined,
+            },
+            "fromMonth": undefined,
+            "modifiers": Object {
+              "end": undefined,
+              "start": undefined,
+            },
+            "month": undefined,
+            "numberOfMonths": 1,
+            "selectedDays": Array [
+              undefined,
+              Object {
+                "from": undefined,
+                "to": undefined,
+              },
+            ],
+          }
+        }
+        format="MM/DD/YYYY"
+        formatDate={[Function]}
+        hideOnDayClick={true}
+        inputProps={Object {}}
+        keepFocus={true}
+        onDayChange={[Function]}
+        overlayComponent={[Function]}
+        parseDate={[Function]}
+        placeholder="End Date"
+        showOverlay={false}
+        value=""
+      />
+      <button
+        aria-label="Clear Dates"
+        className=""
+        onClick={[Function]}
+        type="button"
+      >
+        <svg
+          className="icon"
+          height="12"
+          viewBox="0 0 12 12"
+          width="12"
+        >
+          <path
+            d="M11.53.47a.75.75 0 0 0-1.061 0l-4.47 4.47L1.529.47A.75.75 0 1 0 .468 1.531l4.47 4.47-4.47 4.47a.75.75 0 1 0 1.061 1.061l4.47-4.47 4.47 4.47a.75.75 0 1 0 1.061-1.061l-4.47-4.47 4.47-4.47a.75.75 0 0 0 0-1.061z"
+            fillRule="evenodd"
+          />
+        </svg>
+      </button>
     </div>
   </div>
 </div>
@@ -186,91 +207,112 @@ exports[`should render ExpenseListFilters with alt data correctly 1`] = `
       </select>
     </div>
     <div
-      className="input-group__item"
+      className="DayPickerContainer"
     >
-      <withStyles(DateRangePicker)
-        anchorDirection="left"
-        customArrowIcon={null}
-        customCloseIcon={null}
-        customInputIcon={null}
-        daySize={39}
-        disabled={false}
-        displayFormat={[Function]}
-        enableOutsideDays={false}
-        endDate={"1970-01-04T00:00:00.000Z"}
-        endDateId="endDate"
-        endDatePlaceholderText="End Date"
-        firstDayOfWeek={null}
-        focusedInput={null}
-        hideKeyboardShortcutsPanel={false}
-        horizontalMargin={0}
-        initialVisibleMonth={null}
-        inputIconPosition="before"
-        isDayBlocked={[Function]}
-        isDayHighlighted={[Function]}
-        isOutsideRange={[Function]}
-        isRTL={false}
-        keepOpenOnDateSelect={false}
-        minimumNights={1}
-        monthFormat="MMMM YYYY"
-        navNext={null}
-        navPrev={null}
-        numberOfMonths={1}
-        onClose={[Function]}
-        onDatesChange={[Function]}
-        onFocusChange={[Function]}
-        onNextMonthClick={[Function]}
-        onPrevMonthClick={[Function]}
-        openDirection="down"
-        orientation="horizontal"
-        phrases={
+      <DayPickerInput
+        classNames={
           Object {
-            "calendarLabel": "Calendar",
-            "chooseAvailableEndDate": [Function],
-            "chooseAvailableStartDate": [Function],
-            "clearDates": "Clear Dates",
-            "closeDatePicker": "Close",
-            "dateIsUnavailable": [Function],
-            "enterKey": "Enter key",
-            "escape": "Escape key",
-            "focusStartDate": "Interact with the calendar and add the check-in date for your trip.",
-            "hideKeyboardShortcutsPanel": "Close the shortcuts panel",
-            "homeEnd": "Home and end keys",
-            "jumpToNextMonth": "Move forward to switch to the next month",
-            "jumpToPrevMonth": "Move backward to switch to the previous month",
-            "keyboardNavigationInstructions": "Press the down arrow key to interact with the calendar and
-            select a date. Press the question mark key to get the keyboard shortcuts for changing dates.",
-            "keyboardShortcuts": "Keyboard Shortcuts",
-            "leftArrowRightArrow": "Right and left arrow keys",
-            "moveFocusByOneDay": "Move backward (left) and forward (right) by one day",
-            "moveFocusByOneMonth": "Switch months",
-            "moveFocusByOneWeek": "Move backward (up) and forward (down) by one week",
-            "moveFocustoStartAndEndOfWeek": "Go to the first or last day of a week",
-            "openThisPanel": "Open this panel",
-            "pageUpPageDown": "page up and page down keys",
-            "questionMark": "Question mark",
-            "returnFocusToInput": "Return to the date input field",
-            "selectFocusedDate": "Select the date in focus",
-            "showKeyboardShortcutsPanel": "Open the keyboard shortcuts panel",
-            "upArrowDownArrow": "up and down arrow keys",
+            "container": "DayPickerInput",
+            "overlay": "DayPickerInput-Overlay",
+            "overlayWrapper": "DayPickerInput-OverlayWrapper",
           }
         }
-        readOnly={false}
-        renderCalendarInfo={null}
-        renderDay={null}
-        renderMonth={null}
-        reopenPickerOnClearDates={false}
-        required={false}
-        screenReaderInputMessage=""
-        showClearDates={true}
-        showDefaultInputIcon={false}
-        startDate={"1970-01-01T00:00:00.000Z"}
-        startDateId="startDate"
-        startDatePlaceholderText="Start Date"
-        weekDayFormat="dd"
-        withFullScreenPortal={false}
-        withPortal={false}
+        clickUnselectsDay={false}
+        component="input"
+        dayPickerProps={
+          Object {
+            "disabledDays": Object {
+              "after": "1970-01-04T00:00:00.000Z",
+            },
+            "modifiers": Object {
+              "end": "1970-01-04T00:00:00.000Z",
+              "start": "1970-01-01T00:00:00.000Z",
+            },
+            "numberOfMonths": 1,
+            "onDayClick": [Function],
+            "selectedDays": Array [
+              "1970-01-01T00:00:00.000Z",
+              Object {
+                "from": "1970-01-01T00:00:00.000Z",
+                "to": "1970-01-04T00:00:00.000Z",
+              },
+            ],
+            "toMonth": "1970-01-04T00:00:00.000Z",
+          }
+        }
+        format="MM/DD/YYYY"
+        formatDate={[Function]}
+        hideOnDayClick={true}
+        inputProps={Object {}}
+        keepFocus={true}
+        onDayChange={[Function]}
+        overlayComponent={[Function]}
+        parseDate={[Function]}
+        placeholder="Start Date"
+        showOverlay={false}
+        value="01/01/1970"
       />
+      <DayPickerInput
+        classNames={
+          Object {
+            "container": "DayPickerInput",
+            "overlay": "DayPickerInput-Overlay",
+            "overlayWrapper": "DayPickerInput-OverlayWrapper",
+          }
+        }
+        clickUnselectsDay={false}
+        component="input"
+        dayPickerProps={
+          Object {
+            "disabledDays": Object {
+              "before": "1970-01-01T00:00:00.000Z",
+            },
+            "fromMonth": "1970-01-01T00:00:00.000Z",
+            "modifiers": Object {
+              "end": "1970-01-04T00:00:00.000Z",
+              "start": "1970-01-01T00:00:00.000Z",
+            },
+            "month": "1970-01-01T00:00:00.000Z",
+            "numberOfMonths": 1,
+            "selectedDays": Array [
+              "1970-01-01T00:00:00.000Z",
+              Object {
+                "from": "1970-01-01T00:00:00.000Z",
+                "to": "1970-01-04T00:00:00.000Z",
+              },
+            ],
+          }
+        }
+        format="MM/DD/YYYY"
+        formatDate={[Function]}
+        hideOnDayClick={true}
+        inputProps={Object {}}
+        keepFocus={true}
+        onDayChange={[Function]}
+        overlayComponent={[Function]}
+        parseDate={[Function]}
+        placeholder="End Date"
+        showOverlay={false}
+        value="04/01/1970"
+      />
+      <button
+        aria-label="Clear Dates"
+        className=""
+        onClick={[Function]}
+        type="button"
+      >
+        <svg
+          className="icon"
+          height="12"
+          viewBox="0 0 12 12"
+          width="12"
+        >
+          <path
+            d="M11.53.47a.75.75 0 0 0-1.061 0l-4.47 4.47L1.529.47A.75.75 0 1 0 .468 1.531l4.47 4.47-4.47 4.47a.75.75 0 1 0 1.061 1.061l4.47-4.47 4.47 4.47a.75.75 0 1 0 1.061-1.061l-4.47-4.47 4.47-4.47a.75.75 0 0 0 0-1.061z"
+            fillRule="evenodd"
+          />
+        </svg>
+      </button>
     </div>
   </div>
 </div>

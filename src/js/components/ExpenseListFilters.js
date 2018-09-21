@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { DateRangePicker } from 'react-dates'
+import DayPickerInput from 'react-day-picker/DayPickerInput'
+import dateFormat from 'date-fns/format'
 import ExpensesCategorySelect from './ExpensesCategorySelect'
 import {
   setTextFilter,
@@ -13,15 +14,15 @@ import {
 } from '../actions/filters'
 
 export class ExpenseListFilters extends React.Component {
-  state = {
-    calendarFocused: null
+  onClearDates = () => {
+    this.props.setStartDate('')
+    this.props.setEndDate('')
   }
-  onDatesChange = ({ startDate, endDate }) => {
+  onStartDateChange = (startDate) => {
     this.props.setStartDate(startDate)
-    this.props.setEndDate(endDate)
   }
-  onFocusChange = (calendarFocused) => {
-    this.setState(() => ({ calendarFocused }))
+  onEndDateChange = (endDate) => {
+    this.props.setEndDate(endDate)
   }
   onTextChange = (e) => {
     this.props.setTextFilter(e.target.value)
@@ -37,6 +38,14 @@ export class ExpenseListFilters extends React.Component {
     this.props.setCategory(category)
   }
   render () {
+    const {
+      startDate,
+      endDate,
+      text,
+      category,
+      sortBy
+    } = this.props.filters
+
     return (
       <div className='content-container'>
         <div className='input-group'>
@@ -45,37 +54,62 @@ export class ExpenseListFilters extends React.Component {
               className='text-input'
               placeholder='Search expenses'
               type='text'
-              value={this.props.filters.text}
+              value={text}
               onChange={this.onTextChange}
             />
           </div>
           <div className='input-group__item'>
             <ExpensesCategorySelect
               onChange={this.onCategoryChange}
-              defaultValue={this.props.filters.category || ''}
+              defaultValue={category || ''}
               defaultText='All categories' />
           </div>
           <div className='input-group__item'>
             <select
               className='select'
-              value={this.props.filters.sortBy}
+              value={sortBy}
               onChange={this.onSortChange}
             >
               <option value='date'>Date</option>
               <option value='amount'>Amount</option>
             </select>
           </div>
-          <div className='input-group__item'>
-            <DateRangePicker
-              startDate={this.props.filters.startDate}
-              endDate={this.props.filters.endDate}
-              onDatesChange={this.onDatesChange}
-              focusedInput={this.state.calendarFocused}
-              onFocusChange={this.onFocusChange}
-              showClearDates
-              numberOfMonths={1}
-              isOutsideRange={() => false}
+          <div className='DayPickerContainer'>
+            <DayPickerInput
+              format='MM/DD/YYYY'
+              value={startDate && dateFormat(startDate, 'MM/DD/YYYY')}
+              placeholder='Start Date'
+              dayPickerProps={{
+                selectedDays: [startDate, { from: startDate, to: endDate }],
+                disabledDays: { after: endDate },
+                toMonth: endDate,
+                modifiers: { start: startDate, end: endDate },
+                numberOfMonths: 1,
+                onDayClick: () => this.endDate.getInput().focus()
+              }}
+              onDayChange={this.onStartDateChange}
             />
+            <DayPickerInput
+              ref={el => (this.endDate = el)}
+              format='MM/DD/YYYY'
+              value={endDate && dateFormat(endDate, 'MM/DD/YYYY')}
+              placeholder='End Date'
+              dayPickerProps={{
+                selectedDays: [startDate, { from: startDate, to: endDate }],
+                disabledDays: { before: startDate },
+                modifiers: { start: startDate, end: endDate },
+                month: startDate,
+                fromMonth: startDate,
+                numberOfMonths: 1
+              }}
+              onDayChange={this.onEndDateChange}
+            />
+            <button onClick={this.onClearDates} type='button' aria-label='Clear Dates' className=''>
+              <svg className='icon' viewBox='0 0 12 12' width='12' height='12'>
+                { /* eslint-disable-next-line  */}
+                <path fillRule='evenodd' d='M11.53.47a.75.75 0 0 0-1.061 0l-4.47 4.47L1.529.47A.75.75 0 1 0 .468 1.531l4.47 4.47-4.47 4.47a.75.75 0 1 0 1.061 1.061l4.47-4.47 4.47 4.47a.75.75 0 1 0 1.061-1.061l-4.47-4.47 4.47-4.47a.75.75 0 0 0 0-1.061z'></path>
+              </svg>
+            </button>
           </div>
         </div>
       </div>
@@ -85,9 +119,9 @@ export class ExpenseListFilters extends React.Component {
 
 ExpenseListFilters.propTypes = {
   filters: PropTypes.shape({
-    endDate: PropTypes.object,
+    endDate: PropTypes.oneOfType([ PropTypes.instanceOf(Date), PropTypes.string ]),
     sortBy: PropTypes.string,
-    startDate: PropTypes.object,
+    startDate: PropTypes.oneOfType([ PropTypes.instanceOf(Date), PropTypes.string ]),
     text: PropTypes.string,
     category: PropTypes.string
   }),

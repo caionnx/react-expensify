@@ -1,6 +1,8 @@
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const webpack = require('webpack')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const CompressionPlugin = require('compression-webpack-plugin')
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
@@ -15,6 +17,7 @@ module.exports = (env) => {
   const CSSExtract = new ExtractTextPlugin('styles.css')
 
   return {
+    mode: isProd ? 'production' : 'development',
     entry: ['babel-polyfill', './src/app.js'],
     output: {
       path: path.join(__dirname, 'public', 'dist'),
@@ -31,11 +34,11 @@ module.exports = (env) => {
           use: [
             {
               loader: 'css-loader',
-              options: { sourceMap: true }
+              options: { sourceMap: !isProd }
             },
             {
               loader: 'sass-loader',
-              options: { sourceMap: true }
+              options: { sourceMap: !isProd }
             }
           ]
         })
@@ -51,7 +54,14 @@ module.exports = (env) => {
         'process.env.FIREBASE_PROJECT_ID': JSON.stringify(process.env.FIREBASE_PROJECT_ID),
         'process.env.FIREBASE_STORAGE_BUCKET': JSON.stringify(process.env.FIREBASE_STORAGE_BUCKET),
         'process.env.FIREBASE_MESSAGING_SENDER_ID': JSON.stringify(process.env.FIREBASE_MESSAGING_SENDER_ID)
-      })
+      }),
+      new CompressionPlugin({
+        algorithm: 'gzip',
+        test: /\.js$|\.css$|\.html$/,
+        threshold: 10240,
+        minRatio: 0.8
+      }),
+      new BundleAnalyzerPlugin()
     ],
     devtool: isProd ? '(none)' : 'inline-source-map',
     devServer: {

@@ -1,13 +1,24 @@
-import moment from 'moment'
 import filtersReducer from '../../reducers/filters'
+
+jest.mock('date-fns/start_of_month', () =>
+  () => new Date(2018, 1, 1)
+)
+
+jest.mock('date-fns/end_of_month', () =>
+  () => new Date(2018, 1, 31)
+)
+
+afterAll(() => {
+  jest.clearAllMocks()
+})
 
 test('should setup default filter values', () => {
   const state = filtersReducer(undefined, { type: '@@INIT' })
   expect(state).toEqual({
     text: '',
     sortBy: 'date',
-    startDate: moment().startOf('month'),
-    endDate: moment().endOf('month'),
+    startDate: expect.any(Date),
+    endDate: expect.any(Date),
     category: 'none'
   })
 })
@@ -40,7 +51,7 @@ test('should set text filter', () => {
 })
 
 test('should set startDate filter', () => {
-  const startDate = moment()
+  const startDate = new Date()
   const action = {
     type: 'SET_START_DATE',
     startDate
@@ -50,7 +61,7 @@ test('should set startDate filter', () => {
 })
 
 test('should set endDate filter', () => {
-  const endDate = moment()
+  const endDate = new Date()
   const action = {
     type: 'SET_END_DATE',
     endDate

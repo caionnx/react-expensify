@@ -1,4 +1,3 @@
-import moment from 'moment'
 import selectExpenses from '../../selectors/expenses'
 import expenses from '../fixtures/expenses'
 
@@ -18,7 +17,7 @@ test('should filter by startDate', () => {
   const filters = {
     text: '',
     sortBy: 'date',
-    startDate: moment(0),
+    startDate: new Date(0),
     endDate: undefined
   }
   const result = selectExpenses(expenses, filters)
@@ -31,7 +30,7 @@ test('should filter by endDate', () => {
     text: '',
     sortBy: 'date',
     startDate: undefined,
-    endDate: moment(0).add(2, 'days')
+    endDate: new Date(432000000)
   }
   const result = selectExpenses(expenses, filters)
   expect(result.filtered).toEqual([expenses[0], expenses[1]])

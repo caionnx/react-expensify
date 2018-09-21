@@ -1,11 +1,22 @@
 const path = require('path')
 const express = require('express')
-const compression = require('compression')
 const app = express()
 const publicPath = path.join(__dirname, '..', 'public')
 const port = process.env.PORT || 3000
 
-app.use(compression())
+app.get('*.js', function (req, res, next) {
+  req.url = req.url + '.gz'
+  res.set('Content-Encoding', 'gzip')
+  next()
+})
+
+app.get('*.css', function (req, res, next) {
+  req.url = req.url + '.gz'
+  res.set('Content-Encoding', 'gzip')
+  res.set('Content-Type', 'text/css; charset=UTF-8')
+  next()
+})
+
 app.use(express.static(publicPath))
 
 app.get('*', (req, res) => {

@@ -1,8 +1,15 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import moment from 'moment'
-import { ExpenseListFilters } from '../../components/ExpenseListFilters'
+import { ExpenseListFilters, default as ConnectedExpenseListFilters } from '../../components/ExpenseListFilters'
 import { filters, altFilters } from '../fixtures/filters'
+import configureMockStore from 'redux-mock-store'
+jest.mock('date-fns/format', () =>
+  (date) => {
+    if (date.match('1970-01-01')) return '01/01/1970'
+    if (date.match('1970-01-04')) return '04/01/1970'
+  }
+)
+const mockStore = configureMockStore()
 
 let setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate, setCategory, wrapper
 
@@ -64,16 +71,36 @@ test('should sort by amount', () => {
   expect(sortByAmount).toHaveBeenCalled()
 })
 
-test('should handle date changes', () => {
-  const startDate = moment(0).add(4, 'years')
-  const endDate = moment(0).add(8, 'years')
-  wrapper.find('withStyles(DateRangePicker)').prop('onDatesChange')({ startDate, endDate })
-  expect(setStartDate).toHaveBeenLastCalledWith(startDate)
-  expect(setEndDate).toHaveBeenLastCalledWith(endDate)
+test('should call setCategory when component change', () => {
+  wrapper.find('Connect(ExpensesCategorySelect)').prop('onChange')()
+  expect(setCategory).toHaveBeenCalled()
 })
 
-test('hould handle date focus changes', () => {
-  const calendarFocused = 'endDate'
-  wrapper.find('withStyles(DateRangePicker)').prop('onFocusChange')(calendarFocused)
-  expect(wrapper.state('calendarFocused')).toBe(calendarFocused)
+test('should handle date changes', () => {
+  const startDate = new Date()
+  const endDate = new Date()
+  wrapper.find('DayPickerInput').at(0).prop('onDayChange')({ startDate })
+  wrapper.find('DayPickerInput').at(1).prop('onDayChange')({ endDate })
+  expect(setStartDate).toHaveBeenLastCalledWith({ startDate })
+  expect(setEndDate).toHaveBeenLastCalledWith({ endDate })
+})
+
+test('should clear dates on button click', () => {
+  wrapper.find('button').simulate('click')
+  expect(setStartDate).toHaveBeenLastCalledWith('')
+  expect(setEndDate).toHaveBeenLastCalledWith('')
+})
+
+test('should have mapStateToProps and mapDispatchToProps', () => {
+  const store = mockStore({ filters })
+
+  wrapper = shallow(<ConnectedExpenseListFilters store={store} />)
+
+  expect(wrapper.prop('filters')).toEqual(filters)
+  expect(wrapper.prop('setTextFilter')()).toMatchObject({ type: expect.any(String) }) // Expect mapDispatch to generate an action object
+  expect(wrapper.prop('sortByDate')()).toMatchObject({ type: expect.any(String) })
+  expect(wrapper.prop('sortByAmount')()).toMatchObject({ type: expect.any(String) })
+  expect(wrapper.prop('setStartDate')()).toMatchObject({ type: expect.any(String) })
+  expect(wrapper.prop('setEndDate')()).toMatchObject({ type: expect.any(String) })
+  expect(wrapper.prop('setCategory')()).toMatchObject({ type: expect.any(String) })
 })

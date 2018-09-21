@@ -1,8 +1,14 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import moment from 'moment'
 import ExpenseForm from '../../components/ExpenseForm'
 import expenses from '../fixtures/expenses'
+
+const DATE_TO_USE = new Date('2018')
+const originalDate = Date
+global.Date = jest.fn(() => DATE_TO_USE)
+global.Date.now = jest.fn()
+
+jest.mock('date-fns/format', () => () => '01/01/2018')
 
 let onSubmitProp
 let dateNowSpy
@@ -14,6 +20,7 @@ beforeAll(() => {
 afterAll(() => {
   dateNowSpy.mockReset()
   dateNowSpy.mockRestore()
+  global.Date = originalDate
 })
 
 test('should render ExpenseForm correctly', () => {
@@ -84,20 +91,13 @@ test('should call onSubmit prop for valid form submission', () => {
     amount: expenses[0].amount,
     note: expenses[0].note,
     category: expenses[0].category,
-    createdAt: expenses[0].createdAt
+    createdAt: expect.any(Number)
   })
 })
 
 test('should set new date on date change', () => {
-  const now = moment()
+  const now = new Date()
   const wrapper = shallow(<ExpenseForm onSubmit={onSubmitProp} />)
-  wrapper.find('withStyles(SingleDatePicker)').prop('onDateChange')(now) // #date == SingleDatePicker
+  wrapper.find('DayPickerInput').prop('onDayChange')(now)
   expect(wrapper.state('createdAt')).toEqual(now)
-})
-
-test('should set calendar focus on change', () => {
-  const focused = true
-  const wrapper = shallow(<ExpenseForm onSubmit={onSubmitProp} />)
-  wrapper.find('withStyles(SingleDatePicker)').prop('onFocusChange')({ focused })
-  expect(wrapper.state('calendarFocused')).toBe(focused)
 })
