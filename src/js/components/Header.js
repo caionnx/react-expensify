@@ -24,7 +24,7 @@ export class Header extends React.Component {
             <Link className='header__title' to='/dashboard'>
               <h1>Expensify</h1>
             </Link>
-            <button aria-label='Open menu' className={`header__menu-toggle ${isMenuOpen ? 'is-active' : ''}`} onClick={this.onMenuClick}>
+            <button id='toggle-header-menu' aria-label='Open menu' className={`header__menu-toggle ${isMenuOpen ? 'is-active' : ''}`} onClick={this.onMenuClick}>
               <span />
             </button>
             <ul className={`header__menu ${isMenuOpen ? 'is-open' : ''}`}>
