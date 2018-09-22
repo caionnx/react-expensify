@@ -1,8 +1,8 @@
 const path = require('path')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const webpack = require('webpack')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const CompressionPlugin = require('compression-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
@@ -14,7 +14,6 @@ if (process.env.NODE_ENV === 'test') {
 
 module.exports = (env) => {
   const isProd = env === 'production'
-  const CSSExtract = new ExtractTextPlugin('styles.css')
 
   return {
     mode: isProd ? 'production' : 'development',
@@ -30,22 +29,23 @@ module.exports = (env) => {
         exclude: /node_modules/
       }, {
         test: /\.s?css$/,
-        use: CSSExtract.extract({
-          use: [
-            {
-              loader: 'css-loader',
-              options: { sourceMap: !isProd }
-            },
-            {
-              loader: 'sass-loader',
-              options: { sourceMap: !isProd }
-            }
-          ]
-        })
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: { sourceMap: !isProd }
+          },
+          {
+            loader: 'sass-loader',
+            options: { sourceMap: !isProd }
+          }
+        ]
       }]
     },
     plugins: [
-      CSSExtract,
+      new MiniCssExtractPlugin({
+        filename: 'styles.css'
+      }),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
         'process.env.FIREBASE_API_KEY': JSON.stringify(process.env.FIREBASE_API_KEY),
