@@ -89,6 +89,7 @@ export default class ExpenseForm extends React.Component {
         <div className='DayPickerContainer DayPickerContainer--largeInput'>
           <DayPickerInput
             format='MM/DD/YYYY'
+            inputProps={{readOnly: 'true'}}
             value={dateFormat(this.state.createdAt, 'MM/DD/YYYY')}
             onDayChange={this.onDateChange} />
         </div>

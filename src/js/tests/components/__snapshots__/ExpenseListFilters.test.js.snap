@@ -84,7 +84,11 @@ exports[`should render ExpenseListFilters correctly 1`] = `
         format="MM/DD/YYYY"
         formatDate={[Function]}
         hideOnDayClick={true}
-        inputProps={Object {}}
+        inputProps={
+          Object {
+            "readOnly": "true",
+          }
+        }
         keepFocus={true}
         onDayChange={[Function]}
         overlayComponent={[Function]}
@@ -127,7 +131,11 @@ exports[`should render ExpenseListFilters correctly 1`] = `
         format="MM/DD/YYYY"
         formatDate={[Function]}
         hideOnDayClick={true}
-        inputProps={Object {}}
+        inputProps={
+          Object {
+            "readOnly": "true",
+          }
+        }
         keepFocus={true}
         onDayChange={[Function]}
         overlayComponent={[Function]}
@@ -243,7 +251,11 @@ exports[`should render ExpenseListFilters with alt data correctly 1`] = `
         format="MM/DD/YYYY"
         formatDate={[Function]}
         hideOnDayClick={true}
-        inputProps={Object {}}
+        inputProps={
+          Object {
+            "readOnly": "true",
+          }
+        }
         keepFocus={true}
         onDayChange={[Function]}
         overlayComponent={[Function]}
@@ -286,7 +298,11 @@ exports[`should render ExpenseListFilters with alt data correctly 1`] = `
         format="MM/DD/YYYY"
         formatDate={[Function]}
         hideOnDayClick={true}
-        inputProps={Object {}}
+        inputProps={
+          Object {
+            "readOnly": "true",
+          }
+        }
         keepFocus={true}
         onDayChange={[Function]}
         overlayComponent={[Function]}
