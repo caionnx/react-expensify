@@ -34,6 +34,11 @@
   }
 }
 
+.list-item--space-between {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .list-item--no-link {
   &:hover {
     background: none;
