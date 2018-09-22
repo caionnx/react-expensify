@@ -14,6 +14,7 @@ if (process.env.NODE_ENV === 'test') {
 
 module.exports = (env) => {
   const isProd = env === 'production'
+  const bundleAnalyzer = !isProd ? [new BundleAnalyzerPlugin()] : []
 
   return {
     mode: isProd ? 'production' : 'development',
@@ -61,7 +62,7 @@ module.exports = (env) => {
         threshold: 10240,
         minRatio: 0.8
       }),
-      new BundleAnalyzerPlugin()
+      ...bundleAnalyzer
     ],
     devtool: isProd ? '(none)' : 'inline-source-map',
     devServer: {
