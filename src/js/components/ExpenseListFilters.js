@@ -91,6 +91,11 @@ export class ExpenseListFilters extends React.Component {
               onDayChange={this.onStartDateChange}
             />
             <DayPickerInput
+              classNames={{
+                container: 'DayPickerInput',
+                overlayWrapper: 'DayPickerInput-OverlayWrapper',
+                overlay: 'DayPickerInput-Overlay is-contained'
+              }}
               ref={el => (this.endDate = el)}
               format='MM/DD/YYYY'
               value={endDate && dateFormat(endDate, 'MM/DD/YYYY')}

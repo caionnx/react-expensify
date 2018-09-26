@@ -101,7 +101,7 @@ exports[`should render ExpenseListFilters correctly 1`] = `
         classNames={
           Object {
             "container": "DayPickerInput",
-            "overlay": "DayPickerInput-Overlay",
+            "overlay": "DayPickerInput-Overlay is-contained",
             "overlayWrapper": "DayPickerInput-OverlayWrapper",
           }
         }
@@ -268,7 +268,7 @@ exports[`should render ExpenseListFilters with alt data correctly 1`] = `
         classNames={
           Object {
             "container": "DayPickerInput",
-            "overlay": "DayPickerInput-Overlay",
+            "overlay": "DayPickerInput-Overlay is-contained",
             "overlayWrapper": "DayPickerInput-OverlayWrapper",
           }
         }
