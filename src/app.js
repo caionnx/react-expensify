@@ -6,11 +6,9 @@ import { firebase } from './js/firebase/firebase'
 import { startSetExpenses } from './js/actions/expenses'
 import { login, logout } from './js/actions/auth'
 import configureStore from './js/store/configureStore'
-import LoadingPage from './js/components/LoadingPage'
 import './app-styles'
 
 const appNode = document.getElementById('app')
-ReactDOM.render(<LoadingPage />, appNode)
 
 let hasRenderedApp = false
 const store = configureStore()
