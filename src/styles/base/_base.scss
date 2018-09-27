@@ -15,10 +15,10 @@ body {
 
 button {
   cursor: pointer;
-}
 
-button:disabled {
-  cursor: default;
+  &:disabled {
+    cursor: default;
+  }
 }
 
 .is-active {
