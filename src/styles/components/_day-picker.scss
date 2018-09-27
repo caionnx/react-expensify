@@ -1,0 +1,99 @@
+.DayPickerContainer {
+  border: 1px solid #cacccd;
+  display: flex;
+  padding: $s-size;
+
+  input {
+    border: none;
+    height: 100%;
+    outline: none;
+    width: 110px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:focus {
+      background-color: lighten($dark-blue, 70);
+    }
+  }
+
+  button {
+    background: transparent;
+    border: none;
+    outline: none;
+  }
+
+  .DayPicker {
+    display: block;
+    font-size: $s-size;
+    margin: 0 auto;
+    width: 95%;
+
+    @media (min-width: $large-mobile-breakpoint) {
+      display: inline-block;
+      margin: inherit;
+      width: inherit;
+    }
+
+    &Input {
+      width: 100%;
+
+      @media (min-width: $large-mobile-breakpoint) {
+        width: inherit;
+      }
+    }
+
+    &Input-OverlayWrapper {
+      left: 0;
+      margin-top: 12px;
+      position: absolute;
+
+      @media (min-width: $large-mobile-breakpoint) {
+        margin-top: 0;
+        position: relative;
+      }
+    }
+
+    &Input-Overlay {
+      width: 320px;
+
+      @media (min-width: $large-mobile-breakpoint) {
+        width: inherit;
+        margin-top: 12px;
+
+        &.is-contained{
+          left: auto;
+          right: 0;
+        }
+      }
+    }
+
+    &-Month {
+      width: 100%;
+    }
+
+    &-Day {
+      border-radius: 0;
+    }
+
+    &-Day--start, &-Day--end {
+      background-color: $dark-blue !important;
+      color: white;
+    }
+
+    &-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+      background-color: lighten($dark-blue, 30);
+      color: white;
+    }
+
+    &-NavButton--interactionDisabled {
+      display: block;
+      opacity: 0.5;
+    }
+  }
+
+  &--largeInput input{
+    width: 100%;
+  }
+}

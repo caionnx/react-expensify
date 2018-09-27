@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render Header correctly 1`] = `
+exports[`should change state and render correctly on toggle menu click 1`] = `
 <header
   className="header"
 >
-  <div
+  <nav
     className="content-container"
   >
     <div
@@ -19,22 +19,91 @@ exports[`should render Header correctly 1`] = `
           Expensify
         </h1>
       </Link>
-      <div>
-        <Link
-          className="button button--link"
-          replace={false}
-          to="/edit_categories"
-        >
-          Categories
-        </Link>
-        <button
-          className="button button--link"
-          onClick={[Function]}
-        >
-          Logout
-        </button>
-      </div>
+      <button
+        aria-label="Open menu"
+        className="header__menu-toggle is-active"
+        id="toggle-header-menu"
+        onClick={[Function]}
+      >
+        <span />
+      </button>
+      <ul
+        className="header__menu is-open"
+      >
+        <li>
+          <Link
+            className="button button--link"
+            replace={false}
+            to="/edit_categories"
+          >
+            Categories
+          </Link>
+        </li>
+        <li>
+          <a
+            className="button button--link"
+            href="#"
+            onClick={[Function]}
+          >
+            Logout
+          </a>
+        </li>
+      </ul>
     </div>
-  </div>
+  </nav>
+</header>
+`;
+
+exports[`should render Header correctly 1`] = `
+<header
+  className="header"
+>
+  <nav
+    className="content-container"
+  >
+    <div
+      className="header__content"
+    >
+      <Link
+        className="header__title"
+        replace={false}
+        to="/dashboard"
+      >
+        <h1>
+          Expensify
+        </h1>
+      </Link>
+      <button
+        aria-label="Open menu"
+        className="header__menu-toggle "
+        id="toggle-header-menu"
+        onClick={[Function]}
+      >
+        <span />
+      </button>
+      <ul
+        className="header__menu "
+      >
+        <li>
+          <Link
+            className="button button--link"
+            replace={false}
+            to="/edit_categories"
+          >
+            Categories
+          </Link>
+        </li>
+        <li>
+          <a
+            className="button button--link"
+            href="#"
+            onClick={[Function]}
+          >
+            Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </header>
 `;

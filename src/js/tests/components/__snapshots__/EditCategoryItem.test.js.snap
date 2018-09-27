@@ -2,7 +2,7 @@
 
 exports[`should render EditCategoryItem correctly 1`] = `
 <div
-  className="list-item list-item--no-link"
+  className="list-item list-item--no-link list-item--space-between"
   key="shopping"
 >
   <h3

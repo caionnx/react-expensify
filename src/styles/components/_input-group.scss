@@ -6,24 +6,24 @@
     flex-direction: row;
     margin-bottom: $l-size;
   }
-}
 
-.input-group__item {
-  margin-bottom: $s-size;
-  white-space: nowrap;
+  &__item {
+    margin-bottom: $s-size;
+    white-space: nowrap;
 
-  input, select {
-    width: 100%
-  }
+    input, select {
+      width: 100%
+    }
 
-  @media (min-width: $desktop-breakpoint) {
-    margin: 0 $s-size 0 0;
-    &:last-child{
-      margin-right: 0;
+    @media (min-width: $desktop-breakpoint) {
+      margin: 0 $s-size 0 0;
+      &:last-child{
+        margin-right: 0;
+      }
     }
   }
-}
 
-.input-group__item--expanded {
-  flex-grow: 1;
+  &__item--expanded {
+    flex-grow: 1;
+  }
 }

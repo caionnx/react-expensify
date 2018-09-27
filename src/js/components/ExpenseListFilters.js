@@ -79,6 +79,7 @@ export class ExpenseListFilters extends React.Component {
               format='MM/DD/YYYY'
               value={startDate && dateFormat(startDate, 'MM/DD/YYYY')}
               placeholder='Start Date'
+              inputProps={{readOnly: 'true'}}
               dayPickerProps={{
                 selectedDays: [startDate, { from: startDate, to: endDate }],
                 disabledDays: { after: endDate },
@@ -90,10 +91,16 @@ export class ExpenseListFilters extends React.Component {
               onDayChange={this.onStartDateChange}
             />
             <DayPickerInput
+              classNames={{
+                container: 'DayPickerInput',
+                overlayWrapper: 'DayPickerInput-OverlayWrapper',
+                overlay: 'DayPickerInput-Overlay is-contained'
+              }}
               ref={el => (this.endDate = el)}
               format='MM/DD/YYYY'
               value={endDate && dateFormat(endDate, 'MM/DD/YYYY')}
               placeholder='End Date'
+              inputProps={{readOnly: 'true'}}
               dayPickerProps={{
                 selectedDays: [startDate, { from: startDate, to: endDate }],
                 disabledDays: { before: startDate },

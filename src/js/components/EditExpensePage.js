@@ -60,8 +60,8 @@ export class EditExpensePage extends React.Component {
 
             <p className='modal__body'>Are you sure you want to remove this expense?</p>
             <div className='modal__options'>
-              <button id='closeRemoveExpenseModal' className='button' onClick={this.onCloseRemoveExpenseModal}>Cancel</button>
               <button id='removeExpense' className='button button--secondary' onClick={this.onRemove}>Remove</button>
+              <button id='closeRemoveExpenseModal' className='button' onClick={this.onCloseRemoveExpenseModal}>Cancel</button>
             </div>
           </Modal>
         </div>
