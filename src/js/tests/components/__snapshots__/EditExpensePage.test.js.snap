@@ -63,18 +63,18 @@ exports[`should render EditExpensePage 1`] = `
         className="modal__options"
       >
         <button
-          className="button"
-          id="closeRemoveExpenseModal"
-          onClick={[Function]}
-        >
-          Cancel
-        </button>
-        <button
           className="button button--secondary"
           id="removeExpense"
           onClick={[Function]}
         >
           Remove
+        </button>
+        <button
+          className="button"
+          id="closeRemoveExpenseModal"
+          onClick={[Function]}
+        >
+          Cancel
         </button>
       </div>
     </Modal>
