@@ -1,4 +1,4 @@
-import { login, logout, startLogin, startLogout } from '../../actions/auth'
+import { login, logout, startGoogleLogin, startLogout } from '../../actions/auth'
 
 test('should setup login action object', () => {
   const uid = '849851dsaftrh'
@@ -19,7 +19,7 @@ test('should setup logout action object', () => {
 })
 
 test('should start login proccess', () => {
-  const action = startLogin()
+  const action = startGoogleLogin()
 
   expect(typeof action().then).toBe('function')
 })

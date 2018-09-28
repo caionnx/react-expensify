@@ -8,14 +8,14 @@ beforeAll(() => {
 })
 
 test('should render LoginPage correctly', () => {
-  const wrapper = shallow(<LoginPage startLogin={startLoginProp} />)
+  const wrapper = shallow(<LoginPage startGoogleLogin={startLoginProp} />)
   expect(wrapper).toMatchSnapshot()
 })
 
-test('should call startLogin on button click', () => {
-  const startLogin = jest.fn()
-  const wrapper = shallow(<LoginPage startLogin={startLogin} />)
+test('should call startGoogleLogin on button click', () => {
+  const startGoogleLogin = jest.fn()
+  const wrapper = shallow(<LoginPage startGoogleLogin={startGoogleLogin} />)
   wrapper.find('button').simulate('click')
 
-  expect(startLogin).toHaveBeenCalled()
+  expect(startGoogleLogin).toHaveBeenCalled()
 })
