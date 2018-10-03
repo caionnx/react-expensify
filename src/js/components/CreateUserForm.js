@@ -53,16 +53,17 @@ export class CreateUserForm extends React.Component {
 
     return (
       <div>
-        { goBackFunction && <a href='#' onClick={goBackFunction}>Back</a> }
         <p>Create your account.</p>
-        <form onSubmit={this.onFormSubmit}>
-          <input type='text' name='email' required />
-          <input type='text' name='confirm-email' required />
-          <input type='password' name='password' required />
-          { error && <p>{error}</p> }
+        <form className='form' onSubmit={this.onFormSubmit}>
+          <input placeholder='Email' aria-label='Email' type='text' name='email' required className='text-input' />
+          <input placeholder='Confirm Email' aria-label='Confirm Email' type='text' name='confirm-email' required className='text-input' />
+          <input placeholder='Password' aria-label='Password' type='password' name='password' required className='text-input' />
+          { error && <p className='form__error'>{error}</p> }
           <button type='submit' className='button' disabled={loading}>
             { loading ? 'Submiting..' : 'Create' }
           </button>
+          { goBackFunction &&
+            <a href='#' className='button button--secondary' onClick={goBackFunction}>Cancel</a> }
         </form>
       </div>
     )

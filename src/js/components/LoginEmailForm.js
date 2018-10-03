@@ -29,15 +29,16 @@ export class LoginEmailForm extends React.Component {
 
     return (
       <div>
-        { goBackFunction && <a href='#' onClick={goBackFunction}>Back</a> }
         <p>Login with your email.</p>
-        <form onSubmit={this.onFormSubmit}>
-          <input type='text' name='email' required />
-          <input type='password' name='password' required />
+        <form className='form' onSubmit={this.onFormSubmit}>
+          <input placeholder='Email' aria-label='Email' type='text' name='email' required className='text-input' />
+          <input placeholder='Password' aria-label='Password' type='password' name='password' required className='text-input' />
           { error && <p>{error}</p> }
           <button type='submit' className='button' disabled={loading}>
             { loading ? 'Loading..' : 'Login' }
           </button>
+          { goBackFunction &&
+            <a href='#' className='button button--secondary' onClick={goBackFunction}>Cancel</a> }
         </form>
       </div>
     )
