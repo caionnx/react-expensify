@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { startGoogleLogin } from '../actions/auth'
 import CreateUserForm from './CreateUserForm'
+import LoginEmailForm from './LoginEmailForm'
 
 export class LoginPage extends React.Component {
   state = {
@@ -38,14 +39,8 @@ export class LoginPage extends React.Component {
             </div>
           }
           { logInWithEmail &&
-            <div>
-              <a href='#' onClick={ev => this.toggleStateParam(ev, 'logInWithEmail')}>Back</a>
-              <p>LogIn with your email.</p>
-              <form onSubmit=''>
-                <input type='text' />
-                <input type='text' />
-              </form>
-            </div>
+            <LoginEmailForm
+              goBackFunction={ev => this.toggleStateParam(ev, 'logInWithEmail')} />
           }
           { createUser &&
             <CreateUserForm
