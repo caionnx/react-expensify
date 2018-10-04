@@ -1,4 +1,11 @@
-import { login, logout, startGoogleLogin, startLogout } from '../../actions/auth'
+import {
+  login,
+  logout,
+  startGoogleLogin,
+  startLogout,
+  startCreateUser,
+  startEmailLogin
+} from '../../actions/auth'
 
 test('should setup login action object', () => {
   const uid = '849851dsaftrh'
@@ -26,6 +33,18 @@ test('should start login proccess', () => {
 
 test('should start logout proccess', () => {
   const action = startLogout()
+
+  expect(typeof action().then).toBe('function')
+})
+
+test('should start create user proccess', () => {
+  const action = startCreateUser('user', 'password')
+
+  expect(typeof action().then).toBe('function')
+})
+
+test('should start login with email proccess', () => {
+  const action = startEmailLogin('user', 'password')
 
   expect(typeof action().then).toBe('function')
 })
