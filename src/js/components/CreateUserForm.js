@@ -63,7 +63,7 @@ export class CreateUserForm extends React.Component {
             { loading ? 'Submiting..' : 'Create' }
           </button>
           { goBackFunction &&
-            <a href='#' className='button button--secondary' onClick={goBackFunction}>Cancel</a> }
+            <button className='button button--secondary' onClick={goBackFunction}>Cancel</button> }
         </form>
       </div>
     )
