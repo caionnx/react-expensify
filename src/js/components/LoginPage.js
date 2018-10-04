@@ -33,9 +33,15 @@ export class LoginPage extends React.Component {
           { !logInWithEmail && !createUser &&
             <div>
               <p>It's time to get your expenses under control.</p>
-              <button className='button' onClick={startGoogleLogin}>Login with Google</button>
-              <button className='button' onClick={ev => this.toggleStateParam(ev, 'logInWithEmail')}>Login with Email</button>
-              <a href='#' onClick={ev => this.toggleStateParam(ev, 'createUser')}>Create account</a>
+              <div className='box-layout__element'>
+                <button className='button' onClick={startGoogleLogin}>Login with Google</button>
+              </div>
+              <div className='box-layout__element'>
+                <button className='button' onClick={ev => this.toggleStateParam(ev, 'logInWithEmail')}>Login with Email</button>
+              </div>
+              <div className='box-layout__element'>
+                <a href='#' onClick={ev => this.toggleStateParam(ev, 'createUser')}>Create account</a>
+              </div>
             </div>
           }
           { logInWithEmail &&
