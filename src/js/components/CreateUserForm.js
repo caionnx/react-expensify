@@ -6,7 +6,18 @@ import PropTypes from 'prop-types'
 export class CreateUserForm extends React.Component {
   state = {
     error: false,
-    loading: false
+    loading: false,
+    email: '',
+    confirmEmail: false,
+    password: ''
+  }
+
+  setStateProperty = (value, property) => {
+    this.setState(() => {
+      const state = {}
+      state[property] = value
+      return state
+    })
   }
 
   isEmail = (email) =>
@@ -17,10 +28,7 @@ export class CreateUserForm extends React.Component {
 
   onFormSubmit = (ev) => {
     ev.preventDefault()
-    const formData = new FormData(ev.target) // eslint-disable-line
-    const email = formData.get('email')
-    const confirmEmail = formData.get('confirm-email')
-    const password = formData.get('password')
+    const { email, confirmEmail, password } = this.state
 
     if (!this.isEmail(email)) {
       this.setState(() => ({ error: 'Invalid email address.' }))
@@ -55,9 +63,30 @@ export class CreateUserForm extends React.Component {
       <div>
         <p>Create your account.</p>
         <form className='form' onSubmit={this.onFormSubmit}>
-          <input placeholder='Email' aria-label='Email' type='text' name='email' required className='text-input' />
-          <input placeholder='Confirm Email' aria-label='Confirm Email' type='text' name='confirm-email' required className='text-input' />
-          <input placeholder='Password' aria-label='Password' type='password' name='password' required className='text-input' />
+          <input
+            onChange={(ev) => this.setStateProperty(ev.target.value, 'email')}
+            placeholder='Email'
+            aria-label='Email'
+            type='text'
+            name='email'
+            required
+            className='text-input' />
+          <input
+            onChange={(ev) => this.setStateProperty(ev.target.value, 'confirmEmail')}
+            placeholder='Confirm Email'
+            aria-label='Confirm Email'
+            type='text'
+            name='confirm-email'
+            required
+            className='text-input' />
+          <input
+            onChange={(ev) => this.setStateProperty(ev.target.value, 'password')}
+            placeholder='Password'
+            aria-label='Password'
+            type='password'
+            name='password'
+            required
+            className='text-input' />
           { error && <p className='form__error'>{error}</p> }
           <button type='submit' className='button' disabled={loading}>
             { loading ? 'Submiting..' : 'Create' }
