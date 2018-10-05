@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render properly 1`] = `
+<div>
+  <p>
+    Create your account.
+  </p>
+  <form
+    className="form"
+    onSubmit={[Function]}
+  >
+    <input
+      aria-label="Email"
+      className="text-input"
+      name="email"
+      onChange={[Function]}
+      placeholder="Email"
+      required={true}
+      type="text"
+    />
+    <input
+      aria-label="Confirm Email"
+      className="text-input"
+      name="confirm-email"
+      onChange={[Function]}
+      placeholder="Confirm Email"
+      required={true}
+      type="text"
+    />
+    <input
+      aria-label="Password"
+      className="text-input"
+      name="password"
+      onChange={[Function]}
+      placeholder="Password"
+      required={true}
+      type="password"
+    />
+    <button
+      className="button"
+      disabled={false}
+      type="submit"
+    >
+      Create
+    </button>
+    <button
+      className="button button--secondary"
+      onClick={[Function]}
+    >
+      Cancel
+    </button>
+  </form>
+</div>
+`;
