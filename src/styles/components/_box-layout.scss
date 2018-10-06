@@ -14,16 +14,37 @@
   justify-content: center;
   width: 100vw;
 
+  a {
+    color: $blue;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  button {
+    width: 100%;
+  }
+
   &__box {
     background: fade-out(white, .15);
     border-radius: 3px;
     padding: $l-size $m-size;
     text-align: center;
-    width: 25rem;
+    width: 32rem;
   }
 
   &__title {
     margin: 0 0 $m-size 0;
     line-height: 1;
+  }
+
+  &__element {
+    margin-bottom: $m-size;
+  }
+
+  &__element:last-child {
+    margin-bottom: 0;
   }
 }

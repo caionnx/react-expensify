@@ -16,5 +16,13 @@ firebase.initializeApp(config)
 
 const database = firebase.database()
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
+const createUser = (email, password) => firebase.auth().createUserWithEmailAndPassword(email, password)
+const logInUser = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password)
 
-export {firebase, googleAuthProvider, database as default}
+export {
+  firebase,
+  googleAuthProvider,
+  createUser,
+  logInUser,
+  database as default
+}

@@ -4,6 +4,9 @@
   >* {
     margin-bottom: $m-size;
   }
+  >*:last-child {
+    margin-bottom: 0;
+  }
 
   &__error {
     font-style: italic;
