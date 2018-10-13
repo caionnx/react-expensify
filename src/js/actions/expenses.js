@@ -1,4 +1,5 @@
 import database from '../firebase/firebase'
+import modeOperator from './loginModeOperator'
 
 // ADD_EXPENSE
 export const addExpense = (expense) => ({
@@ -7,7 +8,8 @@ export const addExpense = (expense) => ({
 })
 
 export const startAddExpense = (expenseData = {}) => (dispatch, getState) => {
-  const uid = getState().auth.uid
+  const auth = getState().auth
+  const { uid } = auth
   const {
     description = '',
     note = '',
@@ -18,11 +20,17 @@ export const startAddExpense = (expenseData = {}) => (dispatch, getState) => {
 
   const expense = { description, note, amount, createdAt, category }
 
-  return database.ref(`users/${uid}/expenses`).push(expense).then(ref => {
-    dispatch(addExpense({
-      id: ref.key,
+  return modeOperator(auth, {
+    anonymous: () => dispatch(addExpense({
+      id: String(Math.floor(Math.random() * 100)),
       ...expense
-    }))
+    })),
+    connected: () => database.ref(`users/${uid}/expenses`).push(expense).then(ref => {
+      dispatch(addExpense({
+        id: ref.key,
+        ...expense
+      }))
+    })
   })
 }
 
@@ -33,10 +41,14 @@ export const removeExpense = (id) => ({
 })
 
 export const startRemoveExpense = ({ id } = {}) => (dispatch, getState) => {
-  const uid = getState().auth.uid
+  const auth = getState().auth
+  const { uid } = auth
 
-  return database.ref(`users/${uid}/expenses/${id}`).remove().then(() => {
-    dispatch(removeExpense(id))
+  return modeOperator(auth, {
+    anonymous: () => dispatch(removeExpense(id)),
+    connected: () => database.ref(`users/${uid}/expenses/${id}`).remove().then(() => {
+      dispatch(removeExpense(id))
+    })
   })
 }
 
@@ -48,10 +60,14 @@ export const editExpense = (id, updates) => ({
 })
 
 export const startEditExpense = (id, updates) => (dispatch, getState) => {
-  const uid = getState().auth.uid
+  const auth = getState().auth
+  const { uid } = auth
 
-  return database.ref(`users/${uid}/expenses/${id}`).update(updates).then(() => {
-    dispatch(editExpense(id, updates))
+  return modeOperator(auth, {
+    anonymous: () => dispatch(editExpense(id, updates)),
+    connected: () => database.ref(`users/${uid}/expenses/${id}`).update(updates).then(() => {
+      dispatch(editExpense(id, updates))
+    })
   })
 }
 
@@ -62,17 +78,21 @@ export const setExpenses = (expenses) => ({
 })
 
 export const startSetExpenses = () => (dispatch, getState) => {
-  const uid = getState().auth.uid
+  const auth = getState().auth
+  const { uid } = auth
 
-  return database.ref(`users/${uid}/expenses`).once('value').then((snapshot) => {
-    const expenses = []
-    snapshot.forEach(element => {
-      expenses.push({
-        id: element.key,
-        ...element.val()
+  return modeOperator(auth, {
+    anonymous: () => dispatch(setExpenses([])),
+    connected: () => database.ref(`users/${uid}/expenses`).once('value').then((snapshot) => {
+      const expenses = []
+      snapshot.forEach(element => {
+        expenses.push({
+          id: element.key,
+          ...element.val()
+        })
       })
-    })
 
-    dispatch(setExpenses(expenses))
+      dispatch(setExpenses(expenses))
+    })
   })
 }

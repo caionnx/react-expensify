@@ -167,3 +167,71 @@ test('should fetch the expenses from firebase', () => {
     })
   })
 })
+
+describe('anonymous actions', () => {
+  const anonymousAuthState = { auth: { uid, isAnonymous: true } }
+
+  test('should execute startAddExpense only local', () => {
+    const store = createMockStore(anonymousAuthState)
+    const expenseData = {
+      description: 'Hat',
+      amount: 50,
+      category: 'none',
+      note: 'Just a hat',
+      createdAt: 1000
+    }
+
+    store.dispatch(startAddExpense(expenseData)).then(() => {
+      const actions = store.getActions()
+      expect(actions[0]).toEqual({
+        type: 'ADD_EXPENSE',
+        expense: {
+          id: expect.any(String),
+          ...expenseData
+        }
+      })
+    })
+  })
+
+  test('should edit expense from local store', () => {
+    const store = createMockStore(anonymousAuthState)
+    const updates = { note: 'New Note' }
+    const id = expenses[0].id
+
+    store.dispatch(startEditExpense(id, updates)).then(() => {
+      const actions = store.getActions()
+
+      expect(actions[0]).toEqual({
+        type: 'EDIT_EXPENSE',
+        id,
+        updates
+      })
+    })
+  })
+
+  test('should set empty list of expenses on anonymous', () => {
+    const store = createMockStore(anonymousAuthState)
+
+    return store.dispatch(startSetExpenses()).then(() => {
+      const actions = store.getActions()
+
+      expect(actions[0]).toEqual({
+        type: 'SET_EXPENSES',
+        expenses: []
+      })
+    })
+  })
+
+  test('should remove expense from local store', () => {
+    const store = createMockStore(anonymousAuthState)
+
+    store.dispatch(startRemoveExpense(expenses[0])).then(() => {
+      const actions = store.getActions()
+
+      expect(actions[0]).toEqual({
+        type: 'REMOVE_EXPENSE',
+        id: expenses[0].id
+      })
+    })
+  })
+})
