@@ -14,13 +14,18 @@ export class Header extends React.Component {
   }
 
   render () {
-    const { startLogout } = this.props
+    const { startLogout, isAnonymous } = this.props
     const { isMenuOpen } = this.state
 
     return (
       <header className='header'>
         <nav className='content-container'>
           <div className='header__content'>
+            { isAnonymous &&
+              <strong className='header__warning'>
+                You're currently on demo mode, all of your data will expire soon. Please, Login with your account to save your expenses.
+              </strong>
+            }
             <Link className='header__title' to='/dashboard'>
               <h1>Expensify</h1>
             </Link>
@@ -46,11 +51,16 @@ export class Header extends React.Component {
 }
 
 Header.propTypes = {
-  startLogout: PropTypes.func
+  startLogout: PropTypes.func,
+  isAnonymous: PropTypes.bool
 }
+
+const mapStateToProps = ({ auth }) => ({
+  isAnonymous: auth.isAnonymous
+})
 
 const mapDispatchToProps = (dispatch) => ({
   startLogout: () => dispatch(startLogout())
 })
 
-export default connect(undefined, mapDispatchToProps)(Header)
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

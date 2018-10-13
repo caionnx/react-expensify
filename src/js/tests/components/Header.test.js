@@ -7,6 +7,11 @@ test('should render Header correctly', () => {
   expect(wrapper).toMatchSnapshot()
 })
 
+test('should render Header on demo mode correctly', () => {
+  const wrapper = shallow(<Header startLogout={() => null} isAnonymous />)
+  expect(wrapper).toMatchSnapshot()
+})
+
 test('should call startLogout on link click', () => {
   const startLogout = jest.fn()
   const wrapper = shallow(<Header startLogout={startLogout} />)
