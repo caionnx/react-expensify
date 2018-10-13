@@ -46,6 +46,16 @@ exports[`should render LoginPage correctly 1`] = `
           Create account
         </a>
       </div>
+      <div
+        className="box-layout__element"
+      >
+        <a
+          href="#"
+          onClick={[Function]}
+        >
+          See a demo
+        </a>
+      </div>
     </div>
   </div>
 </div>
