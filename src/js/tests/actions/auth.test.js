@@ -4,7 +4,8 @@ import {
   startGoogleLogin,
   startLogout,
   startCreateUser,
-  startEmailLogin
+  startEmailLogin,
+  startSignInAnonymously
 } from '../../actions/auth'
 
 test('should setup login action object', () => {
@@ -47,4 +48,10 @@ test('should start login with email proccess', () => {
   const action = startEmailLogin('user', 'password')
 
   expect(typeof action().then).toBe('function')
+})
+
+test('should start login anonymously proccess', () => {
+  const action = startSignInAnonymously()
+
+  expect(typeof action.then).toBe('function')
 })
