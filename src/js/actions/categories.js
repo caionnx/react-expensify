@@ -1,4 +1,5 @@
 import database from '../firebase/firebase'
+import modeOperator from './loginModeOperator'
 
 // REMOVE_CATEGORY
 export const removeCategory = (id) => ({
@@ -7,10 +8,14 @@ export const removeCategory = (id) => ({
 })
 
 export const startRemoveCategory = ({ id } = {}) => (dispatch, getState) => {
-  const uid = getState().auth.uid
+  const auth = getState().auth
+  const { uid } = auth
 
-  return database.ref(`users/${uid}/categories/${id}`).remove().then(() => {
-    dispatch(removeCategory(id))
+  return modeOperator(auth, {
+    anonymous: () => dispatch(removeCategory(id)),
+    connected: () => database.ref(`users/${uid}/categories/${id}`).remove().then(() => {
+      dispatch(removeCategory(id))
+    })
   })
 }
 
@@ -21,11 +26,15 @@ export const addCategory = (category) => ({
 })
 
 export const startAddCategory = (category = {}) => (dispatch, getState) => {
-  const uid = getState().auth.uid
+  const auth = getState().auth
+  const { uid } = auth
   const { id, value } = category
 
-  return database.ref(`users/${uid}/categories/${id}`).set(value).then(() => {
-    dispatch(addCategory(category))
+  return modeOperator(auth, {
+    anonymous: () => dispatch(addCategory(category)),
+    connected: () => database.ref(`users/${uid}/categories/${id}`).set(value).then(() => {
+      dispatch(addCategory(category))
+    })
   })
 }
 
@@ -48,22 +57,31 @@ export const transformSnapshotToArray = (snapshot = []) => {
 }
 
 export const startSetCategories = () => (dispatch, getState) => {
-  const uid = getState().auth.uid
+  const auth = getState().auth
+  const { uid } = auth
   let categories
 
-  return database.ref(`users/${uid}/categories`).once('value').then((snapshot) => {
-    categories = transformSnapshotToArray(snapshot)
+  return modeOperator(auth, {
+    anonymous: () => dispatch(setCategories([])),
+    connected: () => database.ref(`users/${uid}/categories`).once('value').then((snapshot) => {
+      categories = transformSnapshotToArray(snapshot)
 
-    return categories.length && dispatch(setCategories(categories))
+      return categories.length && dispatch(setCategories(categories))
+    })
   })
 }
 
-export const startRegisterCategories = (categories, uid) => {
-  return database.ref(`users/${uid}/categories`).set({...categories})
+export const startRegisterCategories = (categories, getState) => {
+  const auth = getState().auth
+  const { uid } = auth
+
+  return modeOperator(auth, {
+    anonymous: () => Promise.resolve(true),
+    connected: () => database.ref(`users/${uid}/categories`).set({...categories})
+  })
 }
 
 export const startAddDefaultCategories = () => (dispatch, getState) => {
-  const uid = getState().auth.uid
   let categories
 
   return new Promise((resolve) => {
@@ -72,7 +90,7 @@ export const startAddDefaultCategories = () => (dispatch, getState) => {
 
       if (!categories.length) return false
 
-      startRegisterCategories(snapshot.val(), uid).then(() => {
+      startRegisterCategories(snapshot.val(), getState).then(() => {
         dispatch(setCategories(categories))
         resolve(true)
       })
