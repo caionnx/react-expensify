@@ -1,27 +1,28 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import { LoginPage } from '../../components/LoginPage'
+import { startSignInAnonymously } from '../../actions/auth'
+jest.mock('../../actions/auth')
 
-let startLoginProp
-beforeAll(() => {
-  startLoginProp = () => ({})
+let startGoogleLogin
+let wrapper
+
+beforeEach(() => {
+  startGoogleLogin = jest.fn()
+  wrapper = shallow(<LoginPage startGoogleLogin={startGoogleLogin} />)
 })
 
 test('should render LoginPage correctly', () => {
-  const wrapper = shallow(<LoginPage startGoogleLogin={startLoginProp} />)
   expect(wrapper).toMatchSnapshot()
 })
 
 test('should call startGoogleLogin on button click', () => {
-  const startGoogleLogin = jest.fn()
-  const wrapper = shallow(<LoginPage startGoogleLogin={startGoogleLogin} />)
   wrapper.find('button').at(0).simulate('click')
 
   expect(startGoogleLogin).toHaveBeenCalled()
 })
 
 test('should show LoginEmailForm on button click', () => {
-  const wrapper = shallow(<LoginPage startGoogleLogin={startLoginProp} />)
   wrapper.find('button').at(1).simulate('click', { preventDefault: jest.fn() })
   const LoginEmailForm = wrapper.find('Connect(LoginEmailForm)')
 
@@ -29,15 +30,19 @@ test('should show LoginEmailForm on button click', () => {
 })
 
 test('should show CreateUserForm on button click', () => {
-  const wrapper = shallow(<LoginPage startGoogleLogin={startLoginProp} />)
-  wrapper.find('a').simulate('click', { preventDefault: jest.fn() })
+  wrapper.find('a').at(0).simulate('click', { preventDefault: jest.fn() })
   const CreateUserForm = wrapper.find('Connect(CreateUserForm)')
 
   expect(CreateUserForm).toHaveLength(1)
 })
 
+test('should perform startSignInAnonymously on button click', () => {
+  wrapper.find('a').at(1).simulate('click', { preventDefault: jest.fn() })
+
+  expect(startSignInAnonymously).toHaveBeenCalled()
+})
+
 test('should pass state modifier to CreateUserForm component', () => {
-  const wrapper = shallow(<LoginPage startGoogleLogin={startLoginProp} />)
   const spy = jest.spyOn(wrapper.instance(), 'toggleStateParam')
   wrapper.setState({ logInWithEmail: true, createUser: true })
   wrapper.find('Connect(CreateUserForm)').prop('goBackFunction')({ preventDefault: jest.fn() })
@@ -46,7 +51,6 @@ test('should pass state modifier to CreateUserForm component', () => {
 })
 
 test('should pass state modifier to LoginEmailForm component', () => {
-  const wrapper = shallow(<LoginPage startGoogleLogin={startLoginProp} />)
   const spy = jest.spyOn(wrapper.instance(), 'toggleStateParam')
   wrapper.setState({ logInWithEmail: true, createUser: true })
   wrapper.find('Connect(LoginEmailForm)').prop('goBackFunction')({ preventDefault: jest.fn() })

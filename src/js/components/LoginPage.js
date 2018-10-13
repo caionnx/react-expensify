@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { startGoogleLogin } from '../actions/auth'
+import { startGoogleLogin, startSignInAnonymously } from '../actions/auth'
 import CreateUserForm from './CreateUserForm'
 import LoginEmailForm from './LoginEmailForm'
 
@@ -19,6 +19,11 @@ export class LoginPage extends React.Component {
 
       return state
     })
+  }
+
+  startDemo = (ev) => {
+    ev.preventDefault()
+    startSignInAnonymously()
   }
 
   render () {
@@ -41,6 +46,9 @@ export class LoginPage extends React.Component {
               </div>
               <div className='box-layout__element'>
                 <a href='#' onClick={ev => this.toggleStateParam(ev, 'createUser')}>Create account</a>
+              </div>
+              <div className='box-layout__element'>
+                <a href='#' onClick={this.startDemo}>See a demo</a>
               </div>
             </div>
           }

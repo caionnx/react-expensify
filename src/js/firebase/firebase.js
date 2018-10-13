@@ -18,11 +18,13 @@ const database = firebase.database()
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
 const createUser = (email, password) => firebase.auth().createUserWithEmailAndPassword(email, password)
 const logInUser = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password)
+const signInAnonymously = () => firebase.auth().signInAnonymously()
 
 export {
   firebase,
   googleAuthProvider,
   createUser,
   logInUser,
+  signInAnonymously,
   database as default
 }
