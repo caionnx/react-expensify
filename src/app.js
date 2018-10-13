@@ -25,7 +25,7 @@ const renderAppRouter = () => {
 
 firebase.auth().onAuthStateChanged(user => {
   const loginAuth = () => {
-    store.dispatch(login(user.uid))
+    store.dispatch(login(user.uid, user.isAnonymous))
     store.dispatch(startSetExpenses()).then(() => {
       renderAppRouter()
       if (history.location.pathname === '/') {
