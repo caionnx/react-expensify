@@ -7,6 +7,24 @@ import {
   startEmailLogin,
   startSignInAnonymously
 } from '../../actions/auth'
+const mockPromiseResolved = () => Promise.resolve('success')
+jest.mock('firebase/database', () => jest.fn())
+jest.mock('firebase/auth', () => jest.fn())
+jest.mock('firebase/app', () => {
+  const auth = () => ({
+    signInWithPopup: mockPromiseResolved,
+    signOut: mockPromiseResolved,
+    createUserWithEmailAndPassword: mockPromiseResolved,
+    signInWithEmailAndPassword: mockPromiseResolved,
+    signInAnonymously: mockPromiseResolved
+  })
+  auth.GoogleAuthProvider = jest.fn()
+  return {
+    initializeApp: jest.fn(),
+    database: jest.fn(),
+    auth
+  }
+})
 
 test('should setup login action object', () => {
   const uid = '849851dsaftrh'
