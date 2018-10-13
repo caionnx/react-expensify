@@ -1,4 +1,4 @@
-export default (auth, {anonymous = () => null, connected = () => null} = {}) => {
+export default (auth, {anonymous, connected}) => {
   const { isAnonymous } = auth
   return isAnonymous
     ? Promise.resolve(anonymous())
