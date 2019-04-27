@@ -11,10 +11,22 @@ $hover-close-animation: all ease-in .2s;
   outline: none;
   padding: $s-size;
   text-decoration: none;
-  transition: $hover-close-animation;
 
   .icon {
     transition: $hover-close-animation;
+  }
+
+  &--edit {
+    background: white;
+    border: 2px solid $dark-blue;
+    color: $dark-blue;
+    font-size: $font-size-small;
+    font-weight: bold;
+
+   .icon {
+      fill: $dark-blue;
+      margin-right: ($m-size - $s-size) * 2;
+   }
   }
 
   &--link {
@@ -22,7 +34,6 @@ $hover-close-animation: all ease-in .2s;
   }
 
   &--expanded {
-    height: 100%;
     width: 100%;
   }
 

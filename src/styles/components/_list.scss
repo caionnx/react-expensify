@@ -20,17 +20,24 @@
   color: $dark-grey;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   padding: $s-size;
   text-decoration: none;
   transition: background .3s ease;
+
   &:hover {
     background: $off-white;
   }
+
   @media (min-width: $desktop-breakpoint) {
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
     padding: $m-size;
+  }
+
+  &__block {
+    flex: 0 0 100%;
   }
 
   &__title {

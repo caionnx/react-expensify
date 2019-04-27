@@ -8,6 +8,6 @@ jest.mock('date-fns/format', () =>
 )
 
 test('should render ExpenseListItem correctly', () => {
-  const wrapper = shallow(<ExpenseListItem {...expenses[0]} />)
+  const wrapper = shallow(<ExpenseListItem handleFocus={jest.fn()} isOnFocus={false} {...expenses[0]} />)
   expect(wrapper).toMatchSnapshot()
 })

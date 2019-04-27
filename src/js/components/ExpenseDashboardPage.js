@@ -1,13 +1,16 @@
 import React from 'react'
+import { StickyContainer } from 'react-sticky'
 import ExpenseList from './ExpenseList'
-import ExpenseListFilters from './ExpenseListFilters'
+import ExpenseListFiltersContainer from './ExpenseListFiltersContainer'
 import ExpenseSummary from './ExpensesSummary'
 
 const ExpenseDashboardPage = () => (
   <div>
     <ExpenseSummary />
-    <ExpenseListFilters />
-    <ExpenseList />
+    <StickyContainer>
+      <ExpenseListFiltersContainer />
+      <ExpenseList />
+    </StickyContainer>
   </div>
 )
 
