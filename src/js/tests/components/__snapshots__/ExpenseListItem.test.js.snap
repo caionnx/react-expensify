@@ -1,10 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render ExpenseListItem correctly 1`] = `
-<Link
+<div
   className="list-item"
-  replace={false}
-  to="/edit/1"
+  onClick={[Function]}
 >
   <div>
     <h3
@@ -23,5 +22,5 @@ exports[`should render ExpenseListItem correctly 1`] = `
   >
     $1.95
   </h3>
-</Link>
+</div>
 `;
