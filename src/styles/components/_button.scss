@@ -16,6 +16,19 @@ $hover-close-animation: all ease-in .2s;
     transition: $hover-close-animation;
   }
 
+  &--edit {
+    background: white;
+    border: 2px solid $dark-blue;
+    color: $dark-blue;
+    font-size: $font-size-small;
+    font-weight: bold;
+
+   .icon {
+      fill: $dark-blue;
+      margin-right: ($m-size - $s-size) * 2;
+   }
+  }
+
   &--link {
     background: none;
   }
