@@ -68,7 +68,9 @@ exports[`should render ExpenseList with expenses 1`] = `
       category="education"
       createdAt={0}
       description="Gum"
+      handleFocus={[Function]}
       id="1"
+      isOnFocus={false}
       key="1"
       note=""
     />
@@ -77,7 +79,9 @@ exports[`should render ExpenseList with expenses 1`] = `
       category="none"
       createdAt={-48748745645}
       description="Rent"
+      handleFocus={[Function]}
       id="2"
+      isOnFocus={false}
       key="2"
       note=""
     />
@@ -86,7 +90,9 @@ exports[`should render ExpenseList with expenses 1`] = `
       category="none"
       createdAt={48748745645}
       description="Credit Card"
+      handleFocus={[Function]}
       id="3"
+      isOnFocus={false}
       key="3"
       note=""
     />
