@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#364051" />
+  <title>Expensify</title>
+  <link rel="manifest" href="/manifest.json">
+  <style>
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  color: #333;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  margin: 0;
+}
+@keyframes box-layout-bg {
+  0%{background-position:0% 92%}
+  50%{background-position:100% 9%}
+  100%{background-position:0% 92%}
+}
+.box-layout {
+  align-items: center;
+  animation: box-layout-bg 6s ease infinite;
+  background: linear-gradient(222deg,#7a8aa6,#364051);
+  background-size: 400% 400%;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
+.box-layout__box {
+  background: hsla(0,0%,100%,.85);
+  border-radius: 3px;
+  padding: 3.2rem 1.6rem;
+  text-align: center;
+  width: 32rem;
+}
+.box-layout__title {
+  margin: 0 0 1.6rem;
+  line-height: 1;
+}
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="box-layout">
+      <div class="box-layout__box">
+        <h1 class="box-layout__title">Expensify</h1>
+        <div>
+          <p>You appear to be offline, this app requires an internet connection to manage your expenses.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then((reg) => {
+              console.log('Service worker registered.', reg);
+            });
+      });
+    }
+  </script>
+</body>
+
+</html>
