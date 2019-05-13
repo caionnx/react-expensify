@@ -21,6 +21,7 @@ module.exports = (env) => {
     entry: ['babel-polyfill', './src/app.js'],
     output: {
       path: path.join(__dirname, 'public', 'dist'),
+      publicPath: '/dist/',
       filename: 'bundle.js'
     },
     module: {
@@ -59,8 +60,7 @@ module.exports = (env) => {
       new CompressionPlugin({
         algorithm: 'gzip',
         test: /\.js$|\.css$|\.html$/,
-        threshold: 10240,
-        minRatio: 0.8
+        minRatio: Number.MAX_SAFE_INTEGER
       }),
       ...bundleAnalyzer
     ],
