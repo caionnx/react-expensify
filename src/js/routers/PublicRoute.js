@@ -2,6 +2,7 @@ import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import React from 'react'
 import PropTypes from 'prop-types'
+import ErrorBoundary from '../components/ErrorBoundary'
 
 export const PublicRoute = ({
   isAuthenticated,
@@ -10,7 +11,11 @@ export const PublicRoute = ({
 }) => (
   <Route {...rest} component={(props) => {
     if (!isAuthenticated) {
-      return <Component {...props} />
+      return (
+        <ErrorBoundary>
+          <Component {...props} />
+        </ErrorBoundary>
+      )
     }
 
     return <Redirect to='/dashboard' />
@@ -19,7 +24,10 @@ export const PublicRoute = ({
 
 PublicRoute.propTypes = {
   isAuthenticated: PropTypes.bool,
-  component: PropTypes.func
+  component: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.object
+  ])
 }
 
 const maptStateToProps = (state) => ({
