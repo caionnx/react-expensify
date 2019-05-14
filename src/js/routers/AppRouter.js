@@ -1,15 +1,15 @@
 import { Router, Route, Switch } from 'react-router-dom'
 import React from 'react'
+import loadable from '@loadable/component'
 import createHistory from 'history/createBrowserHistory'
-import LoginPage from '../components/LoginPage'
-import ExpenseDashboardPage from '../components/ExpenseDashboardPage'
-import AddExpensePage from '../components/AddExpensePage'
-import EditExpensePage from '../components/EditExpensePage'
-import EditCategoriesPage from '../components/EditCategoriesPage'
-import NotFoundPage from '../components/NotFoundPage'
 import PrivateRoute from './PrivateRoute'
 import PublicRoute from './PublicRoute'
-
+const LoginPage = loadable(() => import('../components/LoginPage'))
+const AddExpensePage = loadable(() => import('../components/AddExpensePage'))
+const EditExpensePage = loadable(() => import('../components/EditExpensePage'))
+const EditCategoriesPage = loadable(() => import('../components/EditCategoriesPage'))
+const NotFoundPage = loadable(() => import('../components/NotFoundPage'))
+const ExpenseDashboardPage = loadable(() => import('../components/ExpenseDashboardPage'))
 export const history = createHistory()
 
 export const SwitchRoutes = () => (
