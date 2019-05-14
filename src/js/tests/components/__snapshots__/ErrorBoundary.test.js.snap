@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render an error message if the child component produces an error 1`] = `
+<div
+  className="content-container"
+>
+  <h2>
+    Something went wrong loading this page. Please try to reload the app.
+  </h2>
+  <details>
+    <summary>
+      Details for nerds
+    </summary>
+    Error: Ops
+  </details>
+</div>
+`;
