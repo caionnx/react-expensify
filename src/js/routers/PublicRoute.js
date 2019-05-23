@@ -2,7 +2,7 @@ import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import React from 'react'
 import PropTypes from 'prop-types'
-import ErrorBoundary from '../components/ErrorBoundary'
+import ErrorBoundaryForRoute from './ErrorBoundaryForRoute'
 
 export const PublicRoute = ({
   isAuthenticated,
@@ -12,9 +12,9 @@ export const PublicRoute = ({
   <Route {...rest} component={(props) => {
     if (!isAuthenticated) {
       return (
-        <ErrorBoundary>
+        <ErrorBoundaryForRoute>
           <Component {...props} />
-        </ErrorBoundary>
+        </ErrorBoundaryForRoute>
       )
     }
 

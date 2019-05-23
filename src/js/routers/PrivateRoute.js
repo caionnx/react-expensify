@@ -2,7 +2,7 @@ import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import React from 'react'
-import ErrorBoundary from '../components/ErrorBoundary'
+import ErrorBoundaryForRoute from './ErrorBoundaryForRoute'
 import Header, { Header as DisconnectedHeader } from '../components/Header'
 
 export const PrivateRoute = ({
@@ -16,9 +16,9 @@ export const PrivateRoute = ({
       return (
         <React.Fragment>
           {connectedHeader ? <Header /> : <DisconnectedHeader />}
-          <ErrorBoundary>
+          <ErrorBoundaryForRoute>
             <Component {...props} />
-          </ErrorBoundary>
+          </ErrorBoundaryForRoute>
         </React.Fragment>
       )
     }
