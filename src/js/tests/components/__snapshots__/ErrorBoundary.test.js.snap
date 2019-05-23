@@ -5,7 +5,7 @@ exports[`should render an error message if the child component produces an error
   className="content-container"
 >
   <h2>
-    Something went wrong loading this page. Please try to reload the app.
+    Something wrong.
   </h2>
   <details>
     <summary>

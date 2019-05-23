@@ -10,25 +10,38 @@ class ErrorBoundary extends React.Component {
 
   render () {
     const { error } = this.state
+    const {
+      errorMessage,
+      includeDetails = true,
+      containerClassName = 'content-container',
+      ErrorManagementComponent
+    } = this.props
 
     if (!error) {
       return this.props.children
     }
 
     return (
-      <div className='content-container'>
-        <h2>Something went wrong loading this page. Please try to reload the app.</h2>
-        <details>
-          <summary>Details for nerds</summary>
-          {error.toString && error.toString()}
-        </details>
+      <div className={containerClassName}>
+        <h2>{errorMessage}</h2>
+        { includeDetails &&
+          <details>
+            <summary>Details for nerds</summary>
+            {error.toString && error.toString()}
+          </details>
+        }
+        { ErrorManagementComponent && <ErrorManagementComponent /> }
       </div>
     )
   }
 }
 
 ErrorBoundary.propTypes = {
-  children: PropTypes.any
+  errorMessage: PropTypes.string.isRequired,
+  includeDetails: PropTypes.bool,
+  containerClassName: PropTypes.string,
+  children: PropTypes.any,
+  ErrorManagementComponent: PropTypes.func
 }
 
 export default ErrorBoundary

@@ -3,11 +3,13 @@ import { shallow } from 'enzyme'
 import ErrorBoundary from '../../components/ErrorBoundary'
 
 let wrapper
+const errorMessage = 'Something wrong.'
 const Component = () => null
+const HandleErrorComponent = () => null
 
 test('should render the children component correctly', () => {
   wrapper = shallow(
-    <ErrorBoundary>
+    <ErrorBoundary errorMessage={errorMessage}>
       <Component />
     </ErrorBoundary>
   )
@@ -17,10 +19,22 @@ test('should render the children component correctly', () => {
 
 test('should render an error message if the child component produces an error', () => {
   wrapper = shallow(
-    <ErrorBoundary>
+    <ErrorBoundary errorMessage={errorMessage}>
       <Component />
     </ErrorBoundary>
   )
   wrapper.find(Component).simulateError(new Error('Ops'))
   expect(wrapper).toMatchSnapshot()
+})
+
+test('should render an component from props to handle the error', () => {
+  wrapper = shallow(
+    <ErrorBoundary
+      errorMessage={errorMessage}
+      ErrorManagementComponent={HandleErrorComponent}>
+      <Component />
+    </ErrorBoundary>
+  )
+  wrapper.find(Component).simulateError(new Error('Ops'))
+  expect(wrapper.find(HandleErrorComponent)).toHaveLength(1)
 })
