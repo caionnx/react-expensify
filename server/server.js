@@ -14,25 +14,26 @@ function handleVendorsCompress (req, res, next) {
   if (req.url.match(/.css/g)) res.set('Content-Type', 'text/css; charset=UTF-8')
   next()
 }
+
+function sendFile ({ url }, res) {
+  const finalUrl = path.join(publicPath, url)
+  return res.sendFile(finalUrl)
+}
+
 app.get('*.css', handleVendorsCompress)
+app.get('/service-worker.js', sendFile) // Exception of .js file
 app.get('*.js', handleVendorsCompress)
 
 // Handle all routing and root middleware
 app.use(express.static(path.join(publicPath, 'dist/')))
 app.get('*', ({ url }, res) => {
-  let fromPublic = false
+  let finalUrl = url
 
   if (
-    url.match(/\/images\//) ||
-    url.match(/\/manifest.json/) ||
-    url.match(/\/install.js/) ||
-    url.match(/\/service-worker.js/) ||
-    url.match(/\/offline.html/)
-  ) fromPublic = true
+    !url.match(
+      /(\/images\/)|(\/manifest.json)|(\/install.js)|(\/offline.html)/
+    )
+  ) finalUrl = path.join('dist', 'index.html')
 
-  if (fromPublic) {
-    res.sendFile(path.join(publicPath, url))
-  } else {
-    res.sendFile(path.join(publicPath, 'dist', 'index.html'))
-  }
+  sendFile({ url: finalUrl }, res)
 })
