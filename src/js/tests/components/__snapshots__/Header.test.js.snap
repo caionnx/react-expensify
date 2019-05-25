@@ -12,7 +12,6 @@ exports[`should change state and render correctly on toggle menu click 1`] = `
     >
       <Link
         className="header__title"
-        replace={false}
         to="/dashboard"
       >
         <h1>
@@ -33,7 +32,6 @@ exports[`should change state and render correctly on toggle menu click 1`] = `
         <li>
           <Link
             className="button button--link"
-            replace={false}
             to="/edit_categories"
           >
             Categories
@@ -66,7 +64,6 @@ exports[`should render Header correctly 1`] = `
     >
       <Link
         className="header__title"
-        replace={false}
         to="/dashboard"
       >
         <h1>
@@ -87,7 +84,6 @@ exports[`should render Header correctly 1`] = `
         <li>
           <Link
             className="button button--link"
-            replace={false}
             to="/edit_categories"
           >
             Categories
@@ -125,7 +121,6 @@ exports[`should render Header on demo mode correctly 1`] = `
       </strong>
       <Link
         className="header__title"
-        replace={false}
         to="/dashboard"
       >
         <h1>
@@ -146,7 +141,6 @@ exports[`should render Header on demo mode correctly 1`] = `
         <li>
           <Link
             className="button button--link"
-            replace={false}
             to="/edit_categories"
           >
             Categories

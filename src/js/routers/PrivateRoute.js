@@ -2,6 +2,7 @@ import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import React from 'react'
+import ErrorBoundaryForRoute from './ErrorBoundaryForRoute'
 import Header, { Header as DisconnectedHeader } from '../components/Header'
 
 export const PrivateRoute = ({
@@ -13,10 +14,12 @@ export const PrivateRoute = ({
   <Route {...rest} component={(props) => {
     if (isAuthenticated) {
       return (
-        <div>
+        <React.Fragment>
           {connectedHeader ? <Header /> : <DisconnectedHeader />}
-          <Component {...props} />
-        </div>
+          <ErrorBoundaryForRoute>
+            <Component {...props} />
+          </ErrorBoundaryForRoute>
+        </React.Fragment>
       )
     }
 
@@ -26,7 +29,10 @@ export const PrivateRoute = ({
 
 PrivateRoute.propTypes = {
   isAuthenticated: PropTypes.bool,
-  component: PropTypes.func,
+  component: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.object
+  ]),
   connectedHeader: PropTypes.bool
 }
 

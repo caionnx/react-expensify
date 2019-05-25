@@ -34,7 +34,6 @@ exports[`Should render Expenses Summary correctly with 0 expenses 1`] = `
     >
       <Link
         className="button"
-        replace={false}
         to="/create"
       >
         Add Expense
@@ -78,7 +77,6 @@ exports[`Should render Expenses Summary correctly with multiple expenses 1`] = `
     >
       <Link
         className="button"
-        replace={false}
         to="/create"
       >
         Add Expense

@@ -29,17 +29,21 @@ test('should AppRouter contains a router', () => {
   expect(wrapper.find(Router)).toHaveLength(1)
 })
 
-test('should render 404 to invalid path', () => {
+test('should render 404 to invalid path', done => {
   const wrapper = mount(
     <MemoryRouter initialEntries={[ '/anything' ]}>
       <SimulateApp />
     </MemoryRouter>
   )
 
-  expect(wrapper.find(NotFoundPage)).toHaveLength(1)
+  process.nextTick(() => {
+    wrapper.update()
+    expect(wrapper.find(NotFoundPage)).toHaveLength(1)
+    done()
+  })
 })
 
-test('should render LoginPage to unauthorized user', () => {
+test('should render LoginPage to unauthorized user', done => {
   const store = createMockStore({ auth: { }, filters, expenses: [] })
   const wrapper = mount(
     <MemoryRouter initialEntries={[ '/' ]}>
@@ -49,25 +53,37 @@ test('should render LoginPage to unauthorized user', () => {
     </MemoryRouter>
   )
 
-  expect(wrapper.find(LoginPage)).toHaveLength(1)
+  process.nextTick(() => {
+    wrapper.update()
+    expect(wrapper.find(LoginPage)).toHaveLength(1)
+    done()
+  })
 })
 
-test('should render ExpenseDashboardPage to home path', () => {
+test('should render ExpenseDashboardPage to home path', done => {
   const wrapper = mount(
     <MemoryRouter initialEntries={[ '/' ]}>
       <SimulateApp />
     </MemoryRouter>
   )
 
-  expect(wrapper.find(ExpenseDashboardPage)).toHaveLength(1)
+  process.nextTick(() => {
+    wrapper.update()
+    expect(wrapper.find(ExpenseDashboardPage)).toHaveLength(1)
+    done()
+  })
 })
 
-test('should render AddExpensePage to create path', () => {
+test('should render AddExpensePage to create path', done => {
   const wrapper = mount(
     <MemoryRouter initialEntries={[ '/create' ]}>
       <SimulateApp />
     </MemoryRouter>
   )
 
-  expect(wrapper.find(AddExpensePage)).toHaveLength(1)
+  process.nextTick(() => {
+    wrapper.update()
+    expect(wrapper.find(AddExpensePage)).toHaveLength(1)
+    done()
+  })
 })

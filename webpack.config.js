@@ -3,6 +3,8 @@ const webpack = require('webpack')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const CompressionPlugin = require('compression-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
@@ -21,7 +23,8 @@ module.exports = (env) => {
     entry: ['babel-polyfill', './src/app.js'],
     output: {
       path: path.join(__dirname, 'public', 'dist'),
-      filename: 'bundle.js'
+      publicPath: '/',
+      filename: '[name].[contenthash].js'
     },
     module: {
       rules: [{
@@ -43,7 +46,20 @@ module.exports = (env) => {
         ]
       }]
     },
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/](react|react-dom|react-router|firebase|)[\\/]/,
+            name: 'vendors',
+            chunks: 'all'
+          }
+        }
+      }
+    },
     plugins: [
+      new HtmlWebpackPlugin({template: path.join(__dirname, 'public', 'index.html')}),
+      new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({
         filename: 'styles.css'
       }),
@@ -57,18 +73,19 @@ module.exports = (env) => {
         'process.env.FIREBASE_MESSAGING_SENDER_ID': JSON.stringify(process.env.FIREBASE_MESSAGING_SENDER_ID)
       }),
       new CompressionPlugin({
-        algorithm: 'gzip',
+        filename: '[path].br',
+        algorithm: 'brotliCompress',
+        compressionOptions: { level: 11 },
         test: /\.js$|\.css$|\.html$/,
-        threshold: 10240,
-        minRatio: 0.8
+        minRatio: Number.MAX_SAFE_INTEGER
       }),
       ...bundleAnalyzer
     ],
     devtool: isProd ? '(none)' : 'inline-source-map',
     devServer: {
-      contentBase: path.join(__dirname, 'public'),
+      contentBase: [path.join(__dirname, 'public', 'dist'), path.join(__dirname, 'public')],
       historyApiFallback: true,
-      publicPath: '/dist'
+      publicPath: '/'
     }
   }
 }
