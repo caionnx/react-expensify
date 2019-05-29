@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 import dateFormat from 'date-fns/format'
-import ExpensesCategorySelect from './ExpensesCategorySelect'
+import ExpensesCategorySelect from '../common/ExpensesCategorySelect'
 import {
   setTextFilter,
   sortByDate,
@@ -11,7 +11,7 @@ import {
   setStartDate,
   setEndDate,
   setCategory
-} from '../actions/filters'
+} from '../../actions/filters'
 
 export class ExpenseListFilters extends React.Component {
   onClearDates = () => {

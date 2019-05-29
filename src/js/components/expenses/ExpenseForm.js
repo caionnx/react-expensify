@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 import dateFormat from 'date-fns/format'
-import ExpensesCategorySelect from './ExpensesCategorySelect'
+import ExpensesCategorySelect from '../common/ExpensesCategorySelect'
 
 export default class ExpenseForm extends React.Component {
   state = {

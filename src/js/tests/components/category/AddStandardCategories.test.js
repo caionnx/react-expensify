@@ -1,16 +1,15 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { EditCategoryItem } from '../../components/EditCategoryItem'
-import categories from '../fixtures/categories'
+import { AddStandardCategories } from '../../../components/category/AddStandardCategories'
 
 let wrapper, buttonAction
 
 beforeEach(() => {
   buttonAction = jest.fn()
-  wrapper = shallow(<EditCategoryItem buttonAction={buttonAction} category={categories[0]} />)
+  wrapper = shallow(<AddStandardCategories buttonAction={buttonAction} />)
 })
 
-test('should render EditCategoryItem correctly', () => {
+test('should render AddStandardCategories correctly', () => {
   expect(wrapper).toMatchSnapshot()
 })
 

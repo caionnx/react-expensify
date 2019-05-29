@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import slugify from 'slugify'
-import { startAddCategory } from '../actions/categories'
+import { startAddCategory } from '../../actions/categories'
 
 export class AddCategoryForm extends React.Component {
   state = {

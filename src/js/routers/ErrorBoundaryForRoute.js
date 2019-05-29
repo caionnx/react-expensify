@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ErrorBoundary from '../components/ErrorBoundary'
+import ErrorBoundary from '../components/common/ErrorBoundary'
 
 const ReloadAppButton = () => (
   <button

@@ -3,7 +3,7 @@ import Modal from 'react-modal'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import ExpenseForm from './ExpenseForm'
-import { startEditExpense, startRemoveExpense } from '../actions/expenses'
+import { startEditExpense, startRemoveExpense } from '../../actions/expenses'
 
 export class EditExpensePage extends React.Component {
   state = {

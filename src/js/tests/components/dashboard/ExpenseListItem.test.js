@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import expenses from '../fixtures/expenses'
-import ExpenseListItem from '../../components/ExpenseListItem'
+import expenses from '../../fixtures/expenses'
+import ExpenseListItem from '../../../components/dashboard/ExpenseListItem'
 
 jest.mock('date-fns/format', () =>
   () => 'January 1st, 1970'

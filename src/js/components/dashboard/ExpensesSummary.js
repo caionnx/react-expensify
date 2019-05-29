@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import numeral from 'numeral'
-import selectExpensesTotal from '../selectors/expenses-total'
-import selectExpenses from '../selectors/expenses'
+import selectExpensesTotal from '../../selectors/expenses-total'
+import selectExpenses from '../../selectors/expenses'
 
 export const ExpensesSummary = ({ expenses }) => {
   const totalFromVisible = selectExpensesTotal(expenses.filtered)

@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { AddCategoryForm } from '../../components/AddCategoryForm'
-import categories from '../fixtures/categories'
+import { AddCategoryForm } from '../../../components/category/AddCategoryForm'
+import categories from '../../fixtures/categories'
 
 let wrapper, startAddCategory
 
