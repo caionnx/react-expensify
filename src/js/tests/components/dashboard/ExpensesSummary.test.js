@@ -1,8 +1,8 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { filters } from '../fixtures/filters'
-import expenses from '../fixtures/expenses'
-import { ExpensesSummary } from '../../components/ExpensesSummary'
+import { filters } from '../../fixtures/filters'
+import expenses from '../../fixtures/expenses'
+import { ExpensesSummary } from '../../../components/dashboard/ExpensesSummary'
 
 test('Should render Expenses Summary correctly with 0 expenses', () => {
   const expensesSelector = { filtered: [], unfiltered: [] }

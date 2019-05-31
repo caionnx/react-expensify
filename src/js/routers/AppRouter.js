@@ -5,11 +5,11 @@ import createHistory from 'history/createBrowserHistory'
 import PrivateRoute from './PrivateRoute'
 import PublicRoute from './PublicRoute'
 const LoginPage = loadable(() => import('../components/LoginPage'))
-const AddExpensePage = loadable(() => import('../components/AddExpensePage'))
-const EditExpensePage = loadable(() => import('../components/EditExpensePage'))
-const EditCategoriesPage = loadable(() => import('../components/EditCategoriesPage'))
+const AddExpensePage = loadable(() => import('../components/expenses/AddExpensePage'))
+const EditExpensePage = loadable(() => import('../components/expenses/EditExpensePage'))
+const EditCategoriesPage = loadable(() => import('../components/category/EditCategoriesPage'))
 const NotFoundPage = loadable(() => import('../components/NotFoundPage'))
-const ExpenseDashboardPage = loadable(() => import('../components/ExpenseDashboardPage'))
+const ExpenseDashboardPage = loadable(() => import('../components/dashboard/ExpenseDashboardPage'))
 export const history = createHistory()
 
 export const SwitchRoutes = () => (

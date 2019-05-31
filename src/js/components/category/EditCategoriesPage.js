@@ -5,8 +5,8 @@ import {
   startSetCategories,
   startRemoveCategory,
   startAddDefaultCategories
-} from '../actions/categories'
-import Modal from './Modal'
+} from '../../actions/categories'
+import Modal from '../common/Modal'
 import EditCategoryItem from './EditCategoryItem'
 import AddStandardCategories from './AddStandardCategories'
 import AddCategoryForm from './AddCategoryForm'

@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { ExpensesCategorySelect } from '../../components/ExpensesCategorySelect'
-import categories from '../fixtures/categories'
+import { ExpensesCategorySelect } from '../../../components/common/ExpensesCategorySelect'
+import categories from '../../fixtures/categories'
 
 let wrapper, onChange, fillCategories
 

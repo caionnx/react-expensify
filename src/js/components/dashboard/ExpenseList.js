@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import ExpenseListItem from './ExpenseListItem'
-import selectExpenses from '../selectors/expenses'
+import selectExpenses from '../../selectors/expenses'
 
 export class ExpenseList extends React.Component {
   state = {

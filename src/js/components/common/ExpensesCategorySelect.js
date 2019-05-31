@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { startSetCategories } from '../actions/categories'
+import { startSetCategories } from '../../actions/categories'
 
 export class ExpensesCategorySelect extends React.Component {
   state = {

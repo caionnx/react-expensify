@@ -8,8 +8,8 @@ import { filters } from '../fixtures/filters'
 import AppRouter, { SwitchRoutes } from '../../routers/AppRouter'
 import LoginPage from '../../components/LoginPage'
 import NotFoundPage from '../../components/NotFoundPage'
-import ExpenseDashboardPage from '../../components/ExpenseDashboardPage'
-import AddExpensePage from '../../components/AddExpensePage'
+import ExpenseDashboardPage from '../../components/dashboard/ExpenseDashboardPage'
+import AddExpensePage from '../../components/expenses/AddExpensePage'
 
 let SimulateApp
 const createMockStore = configureMockStore([thunk])

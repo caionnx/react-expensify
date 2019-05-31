@@ -1,7 +1,10 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import expenses from '../fixtures/expenses'
-import { EditExpensePage, default as ConnectedEditExpensePage } from '../../components/EditExpensePage'
+import expenses from '../../fixtures/expenses'
+import {
+  EditExpensePage,
+  default as ConnectedEditExpensePage
+} from '../../../components/expenses/EditExpensePage'
 import configureMockStore from 'redux-mock-store'
 const mockStore = configureMockStore()
 

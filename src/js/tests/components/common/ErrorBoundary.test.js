@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import ErrorBoundary from '../../components/ErrorBoundary'
+import ErrorBoundary from '../../../components/common/ErrorBoundary'
 
 let wrapper
 const errorMessage = 'Something wrong.'

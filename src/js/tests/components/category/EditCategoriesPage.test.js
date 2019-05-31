@@ -1,7 +1,10 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { EditCategoriesPage, default as ConnectedEditCategoriesPage } from '../../components/EditCategoriesPage'
-import categories from '../fixtures/categories'
+import {
+  EditCategoriesPage,
+  default as ConnectedEditCategoriesPage
+} from '../../../components/category/EditCategoriesPage'
+import categories from '../../fixtures/categories'
 import configureMockStore from 'redux-mock-store'
 const mockStore = configureMockStore()
 

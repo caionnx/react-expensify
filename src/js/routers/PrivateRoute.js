@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import React from 'react'
 import ErrorBoundaryForRoute from './ErrorBoundaryForRoute'
-import Header, { Header as DisconnectedHeader } from '../components/Header'
+import Header, { Header as DisconnectedHeader } from '../components/common/Header'
 
 export const PrivateRoute = ({
   isAuthenticated,

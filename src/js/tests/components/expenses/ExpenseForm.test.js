@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import ExpenseForm from '../../components/ExpenseForm'
-import expenses from '../fixtures/expenses'
+import ExpenseForm from '../../../components/expenses/ExpenseForm'
+import expenses from '../../fixtures/expenses'
 
 const DATE_TO_USE = new Date('2018')
 const originalDate = Date

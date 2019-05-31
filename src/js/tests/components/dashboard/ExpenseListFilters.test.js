@@ -1,7 +1,10 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { ExpenseListFilters, default as ConnectedExpenseListFilters } from '../../components/ExpenseListFilters'
-import { filters, altFilters } from '../fixtures/filters'
+import {
+  ExpenseListFilters,
+  default as ConnectedExpenseListFilters
+} from '../../../components/dashboard/ExpenseListFilters'
+import { filters, altFilters } from '../../fixtures/filters'
 import configureMockStore from 'redux-mock-store'
 jest.mock('date-fns/format', () =>
   (date) => {
