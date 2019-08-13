@@ -117,6 +117,12 @@ export default class ExpenseForm extends React.Component {
           onFocus={this.onAmountFocus}
           onBlur={this.onAmountBlur}
         />
+        { this.state.amountTip &&
+          <p className='form__error'>
+            Amount should be a number with maximum of two decimal points.
+            You can also make custom mathematical operations (for example: 2 + 5 / 2).
+          </p>
+        }
         <ExpensesCategorySelect
           defaultValue={this.state.category || 'none'}
           onChange={this.onCategoryChange}
