@@ -80,21 +80,45 @@ export default class ExpenseForm extends React.Component {
   onCategoryChange = (category) => {
     this.setState(() => ({ category }))
   }
-  onSubmit = (e) => {
+  onSubmit = async (e) => {
     e.preventDefault()
+    const {
+      description,
+      amountMath,
+      note,
+      category
+    } = this.state
 
-    if (!this.state.description || !this.state.amount) {
-      this.setState(() => ({ error: 'Please provide description and amount.' }))
-    } else {
-      this.setState(() => ({ error: '' }))
-      this.props.onSubmit({
-        description: this.state.description,
-        amount: parseFloat(this.state.amount, 10) * 100,
-        createdAt: this.state.createdAt.valueOf(),
-        note: this.state.note,
-        category: this.state.category
-      })
+    let error
+    let { amount, createdAt } = this.state
+
+    try {
+      createdAt = createdAt.valueOf()
+      amount = await amountStringMath(amount)
+      if (!amount.toString().match(/^\d{1,}(\.\d{0,2})?$/)) throw new Error('Please provide amount in the valid format')
+      amount = parseFloat(amount, 10) * 100
+    } catch (error) {
+      this.setState(() => ({ error: error.message }))
+
+      return
     }
+
+    if (!description) {
+      error = 'Please provide description.'
+      this.setState(() => ({ error }))
+
+      return
+    }
+
+    this.setState(() => ({ error: '' }))
+    this.props.onSubmit({
+      description,
+      amount,
+      amountMath,
+      createdAt,
+      note,
+      category
+    })
   }
   render () {
     return (
