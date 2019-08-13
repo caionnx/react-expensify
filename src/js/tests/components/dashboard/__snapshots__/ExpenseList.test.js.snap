@@ -65,6 +65,7 @@ exports[`should render ExpenseList with expenses 1`] = `
   >
     <ExpenseListItem
       amount={195}
+      amountMath="195"
       category="education"
       createdAt={0}
       description="Gum"

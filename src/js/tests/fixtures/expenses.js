@@ -4,6 +4,7 @@ export default [{
   note: '',
   category: 'education',
   amount: 195,
+  amountMath: '195',
   createdAt: 0
 }, {
   id: '2',

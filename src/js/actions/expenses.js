@@ -14,11 +14,12 @@ export const startAddExpense = (expenseData = {}) => (dispatch, getState) => {
     description = '',
     note = '',
     amount = 0,
+    amountMath = '',
     createdAt = 0,
     category = 'none'
   } = expenseData
 
-  const expense = { description, note, amount, createdAt, category }
+  const expense = { description, note, amount, amountMath, createdAt, category }
 
   return modeOperator(auth, {
     anonymous: () => dispatch(addExpense({

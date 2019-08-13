@@ -96,6 +96,7 @@ test('should add expense to database and store', (done) => {
   const store = createMockStore(defaultAuthState)
   const expenseData = {
     description: 'Hat',
+    amountMath: '100 / 2', // This can be a string with value of a number or a math operation
     amount: 50,
     category: 'none',
     note: 'Just a hat',
@@ -126,6 +127,7 @@ test('should add expense with defaults to database and store', (done) => {
     note: '',
     category: 'none',
     amount: 0,
+    amountMath: '',
     createdAt: 0
   }
 
@@ -175,6 +177,7 @@ describe('anonymous actions', () => {
     const store = createMockStore(anonymousAuthState)
     const expenseData = {
       description: 'Hat',
+      amountMath: '',
       amount: 50,
       category: 'none',
       note: 'Just a hat',
