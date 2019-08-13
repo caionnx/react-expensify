@@ -44,8 +44,29 @@ export default class ExpenseForm extends React.Component {
   onAmountChange = (e) => {
     const amount = e.target.value
 
-    if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
-      this.setState(() => ({ amount }))
+    this.setState(() => ({ amount, amountMath: amount, error: '' }))
+  }
+  onAmountFocus = () => {
+    const { amountMath, amount } = this.state
+    // Show Tip
+    if (amountMath && (amountMath !== amount)) {
+      this.setState(() => ({ amount: amountMath }))
+    }
+
+    this.setState(() => ({ amountTip: true, error: '' }))
+  }
+  onAmountBlur = async () => {
+    const amount = this.state.amount
+
+    // Hide amount value description
+    this.setState(() => ({ amountTip: false }))
+
+    try {
+      let result = await amountStringMath(amount)
+      result = parseFloat(result, 10).toString()
+      this.setState(() => ({ amount: result }))
+    } catch (error) {
+      this.setState(() => ({ amount: '', error: error.message }))
     }
   }
   onDateChange = (createdAt) => {
@@ -93,6 +114,8 @@ export default class ExpenseForm extends React.Component {
           placeholder='Amount'
           value={this.state.amount}
           onChange={this.onAmountChange}
+          onFocus={this.onAmountFocus}
+          onBlur={this.onAmountBlur}
         />
         <ExpensesCategorySelect
           defaultValue={this.state.category || 'none'}
