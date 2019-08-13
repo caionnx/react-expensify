@@ -2,7 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 import dateFormat from 'date-fns/format'
+import stringMath from 'string-math'
 import ExpensesCategorySelect from '../common/ExpensesCategorySelect'
+
+const amountStringMath = (operation) => new Promise((resolve, reject) => {
+  stringMath(operation, (err, result) => {
+    if (err) reject(new Error(`Please provide amount in the valid format.`))
+
+    if (result < 0) reject(new Error(`Negative amount is not valid. Please insert a new amount.`))
+    else resolve(result)
+  })
+})
 
 export default class ExpenseForm extends React.Component {
   state = {
