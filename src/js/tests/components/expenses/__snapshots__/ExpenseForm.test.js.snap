@@ -15,7 +15,9 @@ exports[`should render ExpenseForm correctly 1`] = `
   />
   <input
     className="text-input"
+    onBlur={[Function]}
     onChange={[Function]}
+    onFocus={[Function]}
     placeholder="Amount"
     type="text"
     value=""
@@ -87,7 +89,9 @@ exports[`should render ExpenseForm correctly with expense data 1`] = `
   />
   <input
     className="text-input"
+    onBlur={[Function]}
     onChange={[Function]}
+    onFocus={[Function]}
     placeholder="Amount"
     type="text"
     value="1095"
@@ -159,84 +163,9 @@ exports[`should render error for invalid form submission 1`] = `
   />
   <input
     className="text-input"
+    onBlur={[Function]}
     onChange={[Function]}
-    placeholder="Amount"
-    type="text"
-    value=""
-  />
-  <Connect(ExpensesCategorySelect)
-    defaultText="Select a Category"
-    defaultValue="none"
-    onChange={[Function]}
-  />
-  <div
-    className="DayPickerContainer DayPickerContainer--largeInput"
-  >
-    <DayPickerInput
-      classNames={
-        Object {
-          "container": "DayPickerInput",
-          "overlay": "DayPickerInput-Overlay",
-          "overlayWrapper": "DayPickerInput-OverlayWrapper",
-        }
-      }
-      clickUnselectsDay={false}
-      component="input"
-      dayPickerProps={Object {}}
-      format="MM/DD/YYYY"
-      formatDate={[Function]}
-      hideOnDayClick={true}
-      inputProps={
-        Object {
-          "readOnly": "true",
-        }
-      }
-      keepFocus={true}
-      onDayChange={[Function]}
-      overlayComponent={[Function]}
-      parseDate={[Function]}
-      placeholder="YYYY-M-D"
-      showOverlay={false}
-      value="01/01/2018"
-    />
-  </div>
-  <textarea
-    className="textarea"
-    onChange={[Function]}
-    placeholder="Add a note for your expense (optional)"
-    value=""
-  />
-  <div>
-    <button
-      className="button"
-    >
-      Save Expense
-    </button>
-  </div>
-</form>
-`;
-
-exports[`should render error for invalid form submission 2`] = `
-<form
-  className="form"
-  onSubmit={[Function]}
->
-  <p
-    className="form__error"
-  >
-    Please provide description and amount.
-  </p>
-  <input
-    autoFocus={true}
-    className="text-input"
-    onChange={[Function]}
-    placeholder="Description"
-    type="text"
-    value=""
-  />
-  <input
-    className="text-input"
-    onChange={[Function]}
+    onFocus={[Function]}
     placeholder="Amount"
     type="text"
     value=""
