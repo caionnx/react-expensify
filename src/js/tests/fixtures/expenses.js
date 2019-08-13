@@ -12,6 +12,7 @@ export default [{
   note: '',
   category: 'none',
   amount: 109500,
+  amountMath: '109500',
   createdAt: -48748745645
 }, {
   id: '3',
@@ -19,5 +20,6 @@ export default [{
   note: '',
   category: 'none',
   amount: 4500,
+  amountMath: '4500',
   createdAt: 48748745645
 }]
