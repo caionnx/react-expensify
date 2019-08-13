@@ -19,10 +19,12 @@ export default class ExpenseForm extends React.Component {
     description: this.props.expense ? this.props.expense.description : '',
     note: this.props.expense ? this.props.expense.note : '',
     amount: this.props.expense ? (this.props.expense.amount / 100).toString() : '',
+    amountMath: this.props.expense ? this.props.expense.amountMath : '',
     createdAt: this.props.expense ? new Date(this.props.expense.createdAt) : new Date(),
     category: this.setCategoryOnState(this.props.expense),
     calendarFocused: false,
-    error: ''
+    error: '',
+    amountTip: false
   }
   setCategoryOnState (expense) {
     if (expense && expense.category) {
@@ -120,6 +122,7 @@ export default class ExpenseForm extends React.Component {
 ExpenseForm.propTypes = {
   expense: PropTypes.shape({
     amount: PropTypes.number,
+    amountMath: PropTypes.string,
     createdAt: PropTypes.number,
     description: PropTypes.string,
     note: PropTypes.string
