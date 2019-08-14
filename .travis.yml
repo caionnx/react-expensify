@@ -5,13 +5,8 @@ before_install:
   - export PATH="$HOME/.yarn/bin:$PATH"
 
 install:
-<<<<<<< HEAD
   - yarn global add codecov
-=======
-  - yarn add -g codecov
->>>>>>> cecd535248e2c8eb031932469a71974201b4f79b
 
-jobs:
-  include:
-    - stage: Produce Coverage
-      script: jest --config=jest.config.json --coverage && codecov
+script:
+  - jest --config=jest.config.json --coverage
+  - codecov
