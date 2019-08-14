@@ -58,7 +58,6 @@
     "babel-eslint": "^8.2.3",
     "clean-webpack-plugin": "^2.0.2",
     "compression-webpack-plugin": "^2.0.0",
-    "coveralls": "^3.0.1",
     "cross-env": "5.0.5",
     "dotenv": "4.0.0",
     "enzyme": "3.9.0",
