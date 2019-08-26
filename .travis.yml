@@ -4,7 +4,10 @@ before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.16.0
   - export PATH="$HOME/.yarn/bin:$PATH"
 
-jobs:
-  include:
-    - stage: Produce Coverage
-      script: jest --config=jest.config.json --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
+install:
+  - yarn global add codecov
+  - yarn install
+
+script:
+  - jest --config=jest.config.json --coverage
+  - codecov
