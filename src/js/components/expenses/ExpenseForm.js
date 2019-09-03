@@ -84,7 +84,7 @@ export default class ExpenseForm extends React.Component {
     e.preventDefault()
     const {
       description,
-      amountMath,
+      amountMath = '',
       note,
       category
     } = this.state
