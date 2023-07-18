@@ -4,9 +4,6 @@
   "main": "index.js",
   "author": "Caio Nunes",
   "license": "MIT",
-  "engines": {
-    "node": "18.x"
-  },
   "scripts": {
     "start": "node server/server.js",
     "build-prod": "webpack -p --env=production",
