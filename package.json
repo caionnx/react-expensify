@@ -5,7 +5,7 @@
   "author": "Caio Nunes",
   "license": "MIT",
   "engines": {
-    "node": "16.15.1"
+    "node": "18.x"
   },
   "scripts": {
     "start": "node server/server.js",
