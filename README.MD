@@ -2,10 +2,10 @@
 [![Coverage Status](https://coveralls.io/repos/github/caionnx/react-expensify/badge.svg?branch=master)](https://coveralls.io/github/caionnx/react-expensify?branch=master)
 [![Build Status](https://travis-ci.org/caionnx/react-expensify.svg?branch=master)](https://travis-ci.org/caionnx/react-expensify)
 
-A simple project for managing expenses with a React SPA. [https://react-expensify-nn.herokuapp.com](https://react-expensify-nn.herokuapp.com)
+A simple project for managing expenses with a React SPA. [https://csb-fwl44-jf477imnh-caionavarron.vercel.app/](https://csb-fwl44-jf477imnh-caionavarron.vercel.app/)
 
-- Add category to your expense.
-- Login with Email account.
+- Add a category to your expense.
+- Login with an email account.
 - Login anonymously to see a demo.
 
 ### Scripts
@@ -14,11 +14,11 @@ Create bundle as production environment:
 ```
 yarn run build-prod
 ```
-For local development. Accesible from `localhost:8080`:
+For local development. Accessible from `localhost:8080`:
 ```
 yarn run dev-server
 ```
-Node server for production. Accesible from `localhost:3000`:
+Node server for production. Accessible from `localhost:3000`:
 ```
 yarn start
 ```
@@ -39,7 +39,7 @@ yarn test --coverage
 
 * React
 * Firebase
-* Heroku
+* Vercel
 
 ### License
 This project is licensed under the MIT License
